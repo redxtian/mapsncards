@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Map, PlusCircle, Eye, Layers } from 'lucide-react';
+import { Map, PlusCircle, Eye } from 'lucide-react';
 
 export default function Home() {
   return (
@@ -20,7 +20,7 @@ export default function Home() {
           Create strategic negotiation maps to understand leverage, identify opportunities, 
           and achieve better outcomes in your negotiations.
         </p>
-        <div className="flex gap-4 justify-center">
+        <div className="flex gap-4 justify-center flex-wrap">
           <Button asChild size="lg">
             <Link href="/maps/create">
               <PlusCircle className="w-5 h-5 mr-2" />
@@ -37,7 +37,7 @@ export default function Home() {
       </div>
 
       {/* Features */}
-      <div className="grid md:grid-cols-3 gap-8 mb-16">
+      <div className="grid md:grid-cols-2 gap-8 mb-16">
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center">
@@ -49,21 +49,6 @@ export default function Home() {
             <p className="text-gray-600">
               Visualize negotiation dynamics with our comprehensive mapping system 
               that analyzes variability, opposition, and cooperation.
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center">
-              <Layers className="w-5 h-5 mr-2 text-blue-600" />
-              Leverage Analysis
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-gray-600">
-              Identify and maximize your relational, resource, and structural 
-              leverage points for more effective negotiations.
             </p>
           </CardContent>
         </Card>

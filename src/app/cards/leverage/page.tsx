@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Construction, ArrowLeft } from 'lucide-react';
 
-export default function GenerateCardsPage() {
+export default function LeverageCardsPage() {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="max-w-md mx-auto">
@@ -16,7 +16,7 @@ export default function GenerateCardsPage() {
           </CardHeader>
           <CardContent className="text-center">
             <p className="text-gray-600 mb-6">
-              Card generation features are currently disabled. Please focus on creating and managing negotiation maps.
+              Leverage card generation features are currently disabled. Please focus on creating and managing negotiation maps.
             </p>
             <Button asChild>
               <Link href="/maps">

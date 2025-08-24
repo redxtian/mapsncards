@@ -9,12 +9,16 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { LoadingSpinner } from '@/components/common';
 import { SimplifiedCardDeckViewer } from './SimplifiedCardDeckViewer';
-import { Brain, Sparkles, BarChart3, Settings2, AlertCircle, CheckCircle } from 'lucide-react';
+import { Brain, Sparkles, BarChart3, Settings2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { apiClient } from '@/lib/api';
-import { LeverageCardGenerationRequest, LeverageCardGenerationResponse, GenerationSystemStatus, LeverageCard } from '@/types';
+import { LeverageCardGenerationRequest, LeverageCardGenerationResponse, GenerationSystemStatus, LeverageCard as ApiLeverageCard } from '@/types/api';
+import { AnyCard, CardDeckPayload } from '@/types';
 
-const LEVERAGE_TYPES = [
+type LeverageTypeValue = 'informational' | 'relational' | 'resource' | 'urgency' | 'narrative' | 'authority';
+type CognitiveFrameworkValue = 'think_probe_refine' | 'assess_build_propose' | 'identify_link_suggest' | 'surface_analyze_apply' | 'establish_demonstrate_leverage';
+
+const LEVERAGE_TYPES: { value: LeverageTypeValue; label: string; description: string }[] = [
   { value: 'informational', label: 'Informational', description: 'Research and data advantages' },
   { value: 'relational', label: 'Relational', description: 'Connection and trust leverage' },
   { value: 'resource', label: 'Resource', description: 'Assets and capabilities' },
@@ -23,22 +27,13 @@ const LEVERAGE_TYPES = [
   { value: 'authority', label: 'Authority', description: 'Credibility and expertise' }
 ];
 
-const COGNITIVE_FRAMEWORKS = [
+const COGNITIVE_FRAMEWORKS: { value: CognitiveFrameworkValue; label: string; description: string }[] = [
   { value: 'think_probe_refine', label: 'Think-Probe-Refine', description: 'Strategic analysis pattern' },
   { value: 'assess_build_propose', label: 'Assess-Build-Propose', description: 'Solution construction pattern' },
   { value: 'identify_link_suggest', label: 'Identify-Link-Suggest', description: 'Connection-based pattern' },
   { value: 'surface_analyze_apply', label: 'Surface-Analyze-Apply', description: 'Discovery-focused pattern' },
   { value: 'establish_demonstrate_leverage', label: 'Establish-Demonstrate-Leverage', description: 'Authority-building pattern' }
 ];
-
-interface GenerationMetrics {
-  total_sophistication_score: number;
-  quality_benchmark_match: boolean;
-  agents_used: string[];
-  generation_time_seconds: number;
-  framework_distribution: Record<string, number>;
-  leverage_type_coverage: Record<string, number>;
-}
 
 export function SophisticatedLeverageGenerator() {
   const [request, setRequest] = useState<LeverageCardGenerationRequest>({
@@ -47,7 +42,7 @@ export function SophisticatedLeverageGenerator() {
     card_count: 3,
     sophistication_level: 'high',
     deployment_preference: 'both',
-    cognitive_frameworks: undefined
+    cognitive_frameworks: []
   });
 
   const [isGenerating, setIsGenerating] = useState(false);
@@ -97,7 +92,7 @@ export function SophisticatedLeverageGenerator() {
     }
   };
 
-  const handleLeverageTypeToggle = (type: string) => {
+  const handleLeverageTypeToggle = (type: LeverageTypeValue) => {
     setRequest(prev => ({
       ...prev,
       leverage_types: prev.leverage_types?.includes(type)
@@ -106,7 +101,7 @@ export function SophisticatedLeverageGenerator() {
     }));
   };
 
-  const handleFrameworkToggle = (framework: string) => {
+  const handleFrameworkToggle = (framework: CognitiveFrameworkValue) => {
     setRequest(prev => ({
       ...prev,
       cognitive_frameworks: prev.cognitive_frameworks?.includes(framework)
@@ -115,24 +110,20 @@ export function SophisticatedLeverageGenerator() {
     }));
   };
 
-  const getQualityIndicator = (score: number) => {
-    if (score >= 0.90) return { icon: CheckCircle, color: 'text-green-600', label: 'Excellent' };
-    if (score >= 0.80) return { icon: CheckCircle, color: 'text-blue-600', label: 'Good' };
-    if (score >= 0.70) return { icon: AlertCircle, color: 'text-yellow-600', label: 'Fair' };
-    return { icon: AlertCircle, color: 'text-red-600', label: 'Needs Improvement' };
-  };
+  // (removed unused getQualityIndicator helper)
 
   // Convert LeverageCard[] to the format expected by SimplifiedCardDeckViewer
-  const convertToCardDeck = (cards: LeverageCard[]) => ({
+  const convertToCardDeck = (cards: ApiLeverageCard[]): CardDeckPayload => ({
     scenario_input: 'Sophisticated Leverage Cards',
-    cards: cards.map(card => ({
-      ...card,
-      // Ensure compatibility with existing card display
-      deployment_text: card.deployment_modes.direct,
+    cards: cards.map(card => (({
+      // spread the API card and add fields required by Card types
+      ...(card as unknown as AnyCard),
+      deployment_text: card.deployment_modes?.direct ?? '',
       impact_level: 'high',
       risk_level: 'low',
-      preparation_time: 'medium'
-    })),
+      preparation_time: 'medium',
+      ethical_note: (card as any).ethical_note ?? ''
+    }) as unknown as AnyCard)),
     metadata: {
       generation_method: 'crewai_agents',
       complexity: 'advanced',
@@ -405,7 +396,7 @@ export function SophisticatedLeverageGenerator() {
                 {generatedResponse.cards.length} cards
               </Badge>
             </h2>
-            <SimplifiedCardDeckViewer deck={convertToCardDeck(generatedResponse.cards)} />
+            <SimplifiedCardDeckViewer deck={convertToCardDeck(generatedResponse.cards) as any} />
           </div>
         </div>
       )}

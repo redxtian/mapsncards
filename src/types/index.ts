@@ -18,6 +18,10 @@ export type {
   GenerateCardsResponse,
   CardDeckListResponse,
   CardDeckDetailResponse,
+  // Leverage generation API types
+  LeverageCardGenerationRequest,
+  LeverageCardGenerationResponse,
+  GenerationSystemStatus,
   ValidationReport
 } from './api';
 

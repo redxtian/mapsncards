@@ -36,12 +36,6 @@ export function Header() {
               Maps
             </Link>
             <Link 
-              href="/cards" 
-              className="text-gray-700 hover:text-blue-600 font-medium"
-            >
-              Cards
-            </Link>
-            <Link 
               href="/topics" 
               className="text-gray-700 hover:text-blue-600 font-medium"
             >
@@ -88,9 +82,6 @@ export function Header() {
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                   <Link href="/maps">Maps</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/cards">Cards</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                   <Link href="/topics">Topics</Link>

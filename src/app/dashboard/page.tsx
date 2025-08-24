@@ -30,12 +30,14 @@ export default function DashboardPage() {
             Manage your negotiation maps and track your progress
           </p>
         </div>
-        <Button asChild>
-          <Link href="/maps/create">
-            <PlusCircle className="w-4 h-4 mr-2" />
-            New Map
-          </Link>
-        </Button>
+        <div className="flex gap-2">
+          <Button asChild>
+            <Link href="/maps/create">
+              <PlusCircle className="w-4 h-4 mr-2" />
+              New Map
+            </Link>
+          </Button>
+        </div>
       </div>
 
       {/* Stats Cards */}
@@ -143,6 +145,7 @@ export default function DashboardPage() {
           )}
         </CardContent>
       </Card>
+
     </div>
   );
 }
