@@ -12,8 +12,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Maps & Cards - Negotiation Mapping Tools",
-  description: "Create and manage negotiation maps for better outcomes",
+  title: "Negotiation Cards - Strategic Leverage Management",
+  description: "Create and manage negotiation cards with strategic leverage, deployment modes, and recovery strategies for better outcomes",
 };
 
 export default function RootLayout({

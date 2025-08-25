@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Map, PlusCircle, Eye } from 'lucide-react';
+import { CreditCard, Eye, Upload, BarChart3 } from 'lucide-react';
 
 export default function Home() {
   return (
@@ -9,22 +9,22 @@ export default function Home() {
       {/* Hero Section */}
       <div className="text-center mb-16">
         <div className="flex justify-center mb-6">
-          <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center">
-            <Map className="w-8 h-8 text-white" />
+          <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center">
+            <CreditCard className="w-8 h-8 text-white" />
           </div>
         </div>
         <h1 className="text-4xl font-bold text-gray-900 mb-4">
-          Maps & Cards
+          Negotiation Cards
         </h1>
         <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-          Create strategic negotiation maps to understand leverage, identify opportunities, 
-          and achieve better outcomes in your negotiations.
+          Master your negotiations with strategic leverage cards. Build, organize, and deploy 
+          powerful negotiation tactics with our comprehensive card management system.
         </p>
         <div className="flex gap-4 justify-center flex-wrap">
           <Button asChild size="lg">
-            <Link href="/maps/create">
-              <PlusCircle className="w-5 h-5 mr-2" />
-              Create Your First Map
+            <Link href="/cards/input">
+              <Upload className="w-5 h-5 mr-2" />
+              Add Your First Cards
             </Link>
           </Button>
           <Button variant="outline" size="lg" asChild>
@@ -41,14 +41,14 @@ export default function Home() {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center">
-              <Map className="w-5 h-5 mr-2 text-blue-600" />
-              Strategic Mapping
+              <CreditCard className="w-5 h-5 mr-2 text-green-600" />
+              Strategic Cards
             </CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-gray-600">
-              Visualize negotiation dynamics with our comprehensive mapping system 
-              that analyzes variability, opposition, and cooperation.
+              Create and manage negotiation cards with leverage types, deployment modes, 
+              and recovery strategies for any negotiation scenario.
             </p>
           </CardContent>
         </Card>
@@ -56,32 +56,40 @@ export default function Home() {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center">
-              <PlusCircle className="w-5 h-5 mr-2 text-blue-600" />
-              Scenario Planning
+              <BarChart3 className="w-5 h-5 mr-2 text-green-600" />
+              Analytics Dashboard
             </CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-gray-600">
-              Prepare for different negotiation paths with branching scenarios 
-              and event-driven decision trees.
+              Track your leverage distribution, analyze card effectiveness, 
+              and optimize your negotiation strategy with detailed insights.
             </p>
           </CardContent>
         </Card>
       </div>
 
       {/* CTA Section */}
-      <div className="bg-gray-50 rounded-lg p-8 text-center">
+      <div className="bg-green-50 rounded-lg p-8 text-center">
         <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Ready to improve your negotiation outcomes?
+          Ready to master your negotiations?
         </h2>
         <p className="text-gray-600 mb-6">
-          Start by creating your first negotiation map and discover the power of strategic preparation.
+          Start by adding your first negotiation cards and build your strategic toolkit.
         </p>
-        <Button asChild size="lg">
-          <Link href="/maps/create">
-            Get Started Now
-          </Link>
-        </Button>
+        <div className="flex gap-4 justify-center flex-wrap">
+          <Button asChild size="lg">
+            <Link href="/cards/input">
+              Get Started Now
+            </Link>
+          </Button>
+          <Button variant="outline" size="lg" asChild>
+            <Link href="/cards">
+              <CreditCard className="w-4 h-4 mr-2" />
+              Browse Cards
+            </Link>
+          </Button>
+        </div>
       </div>
     </div>
   );
