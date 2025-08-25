@@ -5,12 +5,9 @@ import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { 
   Home, 
-  Map, 
-  MessageSquare, 
-  User, 
+  CreditCard,
   Settings,
-  PlusCircle,
-  CreditCard
+  Upload
 } from 'lucide-react';
 
 const sidebarItems = [
@@ -20,24 +17,9 @@ const sidebarItems = [
     icon: Home,
   },
   {
-    title: 'Maps',
-    href: '/maps',
-    icon: Map,
-  },
-  {
-    title: 'Cards',
+    title: 'Card Library',
     href: '/cards',
     icon: CreditCard,
-  },
-  {
-    title: 'Topics',
-    href: '/topics',
-    icon: MessageSquare,
-  },
-  {
-    title: 'Profile',
-    href: '/profile',
-    icon: User,
   },
   {
     title: 'Settings',
@@ -59,11 +41,11 @@ export function Sidebar({ className }: SidebarProps) {
         <div className="px-3 py-2">
           <div className="space-y-1">
             <Link 
-              href="/maps/create"
-              className="flex items-center rounded-lg bg-blue-600 px-3 py-2 text-sm font-medium text-white hover:bg-blue-700"
+              href="/cards/input"
+              className="flex items-center rounded-lg bg-green-600 px-3 py-2 text-sm font-medium text-white hover:bg-green-700"
             >
-              <PlusCircle className="mr-2 h-4 w-4" />
-              Create New Map
+              <Upload className="mr-2 h-4 w-4" />
+              Add Cards
             </Link>
           </div>
         </div>

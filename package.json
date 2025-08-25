@@ -10,7 +10,8 @@
     "type-check": "tsc --noEmit",
     "build:analyze": "cross-env ANALYZE=true next build",
     "preview": "next build && next start",
-    "clean": "rm -rf .next node_modules/.cache tsconfig.tsbuildinfo"
+    "clean": "rm -rf .next node_modules/.cache tsconfig.tsbuildinfo",
+    "seed": "node scripts/seed-firebase.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.1",
@@ -22,12 +23,12 @@
     "@radix-ui/react-slot": "^1.2.3",
     "@radix-ui/react-tabs": "^1.1.12",
     "@radix-ui/react-toast": "^1.2.14",
-    "@supabase/supabase-js": "^2.56.0",
     "@tanstack/react-query": "^5.83.0",
     "@tanstack/react-query-devtools": "^5.83.0",
     "axios": "^1.11.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "firebase": "^12.1.0",
     "framer-motion": "^12.23.12",
     "lucide-react": "^0.533.0",
     "next": "15.4.4",

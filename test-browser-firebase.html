@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Firebase</title>
+</head>
+<body>
+    <h1>Testing Firebase Connection</h1>
+    <div id="status">Testing...</div>
+    
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js';
+        import { getFirestore, collection, addDoc } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js';
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBZBAXsVId212P0fBYkXt2vZG-2CiSoVDk",
+            authDomain: "mapsncars.firebaseapp.com",
+            projectId: "mapsncars",
+            storageBucket: "mapsncars.firebasestorage.app",
+            messagingSenderId: "459046940998",
+            appId: "1:459046940998:web:4e562dd724187a0897f547",
+            measurementId: "G-GW8F6PX8G3"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        async function testFirestore() {
+            const statusDiv = document.getElementById('status');
+            statusDiv.innerHTML = '🔍 Testing Firestore connection...';
+            
+            try {
+                const testData = {
+                    test: true,
+                    message: "Hello Firebase!",
+                    timestamp: new Date()
+                };
+                
+                const docRef = await addDoc(collection(db, 'test'), testData);
+                statusDiv.innerHTML = `✅ Success! Document written with ID: ${docRef.id}`;
+                
+            } catch (error) {
+                statusDiv.innerHTML = `❌ Error: ${error.code} - ${error.message}`;
+                console.error('Full error:', error);
+            }
+        }
+
+        testFirestore();
+    </script>
+</body>
+</html>

@@ -2,9 +2,9 @@
 
 import React, { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Filter, RefreshCw, Check, ClipboardList, Clipboard, Search, Plus, Upload } from "lucide-react";
+import { Filter, RefreshCw, Check, ClipboardList, Clipboard, Search, Plus, Upload, Edit, Trash2, MoreHorizontal } from "lucide-react";
 import Link from "next/link";
-import { cardOperations, CardItem } from "@/lib/supabase";
+import { cardOperations, CardItem } from "@/lib/firebase";
 
 // ————————————————————————————————————————————————
 // Small UI helpers (Tailwind only)
@@ -26,7 +26,7 @@ const Button = ({
 }: {
   children: React.ReactNode;
   className?: string;
-  onClick?: () => void;
+  onClick?: (e?: React.MouseEvent) => void;
   variant?: "default" | "ghost" | "outline";
   ariaLabel?: string;
   disabled?: boolean;
@@ -76,12 +76,32 @@ const leverageHue: Record<CardItem["leverage"], string> = {
 // FaceCard component
 // ————————————————————————————————————————————————
 
-function FaceCard({ item }: { item: CardItem }) {
+function FaceCard({ item, onEdit, onDelete }: { 
+  item: CardItem; 
+  onEdit?: (item: CardItem) => void;
+  onDelete?: (item: CardItem) => void;
+}) {
   const [mode, setMode] = useState<"direct" | "inception">("direct");
   const [lineIdx, setLineIdx] = useState(0);
   const [copied, setCopied] = useState<"none" | "phrase" | "play">("none");
+  const [showMenu, setShowMenu] = useState(false);
 
   const phrases = item.modes[mode];
+
+  // Close menu when clicking outside
+  useEffect(() => {
+    function handleClickOutside(_event: MouseEvent) {
+      if (showMenu) {
+        setShowMenu(false);
+      }
+    }
+    
+    if (showMenu) {
+      document.addEventListener('click', handleClickOutside);
+      return () => document.removeEventListener('click', handleClickOutside);
+    }
+    return undefined;
+  }, [showMenu]);
   const phrase = phrases[Math.min(lineIdx, Math.max(phrases.length - 1, 0))] || "";
 
   function cycle(delta: number) {
@@ -157,7 +177,14 @@ function FaceCard({ item }: { item: CardItem }) {
               </motion.div>
             </AnimatePresence>
             <div className="mt-2 flex items-center justify-between">
-              <div className="text-xs text-zinc-500">{phrases.length} option{phrases.length !== 1 ? "s" : ""}</div>
+              <div className="flex items-center gap-2">
+                <div className="text-xs text-zinc-500">{phrases.length} option{phrases.length !== 1 ? "s" : ""}</div>
+                {phrases.length > 1 && (
+                  <div className="text-xs bg-zinc-200 text-zinc-700 px-2 py-1 rounded-full">
+                    {lineIdx + 1} of {phrases.length}
+                  </div>
+                )}
+              </div>
               <div className="flex items-center gap-2">
                 <Button variant="outline" onClick={() => cycle(-1)} ariaLabel="Previous phrase">
                   <RefreshCw className="h-4 w-4 -scale-x-100" /> Prev
@@ -206,6 +233,48 @@ function FaceCard({ item }: { item: CardItem }) {
           <Button variant="outline" onClick={() => copy(playBlock, "play")} ariaLabel="Copy full play">
             {copied === "play" ? <><Check className="h-4 w-4"/> Play Copied</> : <><ClipboardList className="h-4 w-4"/> Copy Play</>}
           </Button>
+          
+          {/* Card Actions Menu */}
+          <div className="relative">
+            <Button 
+              variant="ghost" 
+              onClick={(e) => {
+                e?.stopPropagation();
+                setShowMenu(!showMenu);
+              }} 
+              ariaLabel="Card actions"
+            >
+              <MoreHorizontal className="h-4 w-4" />
+            </Button>
+            
+            {showMenu && (
+              <div 
+                className="absolute right-0 top-full z-10 mt-1 min-w-[120px] rounded-lg border border-zinc-200 bg-white shadow-lg"
+                onClick={(e) => e?.stopPropagation()}
+              >
+                <button
+                  className="flex w-full items-center gap-2 px-3 py-2 text-left text-sm text-zinc-700 hover:bg-zinc-50 first:rounded-t-lg"
+                  onClick={() => {
+                    onEdit?.(item);
+                    setShowMenu(false);
+                  }}
+                >
+                  <Edit className="h-4 w-4" />
+                  Edit
+                </button>
+                <button
+                  className="flex w-full items-center gap-2 px-3 py-2 text-left text-sm text-red-600 hover:bg-red-50 last:rounded-b-lg"
+                  onClick={() => {
+                    onDelete?.(item);
+                    setShowMenu(false);
+                  }}
+                >
+                  <Trash2 className="h-4 w-4" />
+                  Delete
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </motion.div>
@@ -223,6 +292,7 @@ export default function FaceCardDisplay() {
   const [query, setQuery] = useState("");
   const [lev, setLev] = useState<"All" | CardItem["leverage"]>("All");
   const [intent, setIntent] = useState<"All" | CardItem["intent"]>("All");
+  const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
 
   // Load cards from Supabase
   useEffect(() => {
@@ -242,6 +312,30 @@ export default function FaceCardDisplay() {
 
     loadCards();
   }, []);
+
+  // Handle edit card
+  const handleEdit = (item: CardItem) => {
+    // For now, we'll redirect to the JSON input page with a note about editing
+    // In a full implementation, this would open an edit modal or form
+    alert(`Edit functionality for "${item.name}" coming soon! For now, you can edit by creating a new card with the same ID to overwrite it.`);
+  };
+
+  // Handle delete card
+  const handleDelete = (item: CardItem) => {
+    setDeleteConfirm(item.id);
+  };
+
+  // Confirm delete
+  const confirmDelete = async (cardId: string) => {
+    try {
+      await cardOperations.delete(cardId);
+      setCards(prev => prev.filter(c => c.id !== cardId));
+      setDeleteConfirm(null);
+    } catch (err) {
+      console.error('Error deleting card:', err);
+      alert('Failed to delete card. Please try again.');
+    }
+  };
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -370,9 +464,33 @@ export default function FaceCardDisplay() {
       {/* Grid */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
         {filtered.map((c) => (
-          <FaceCard key={c.id} item={c} />
+          <FaceCard key={c.id} item={c} onEdit={handleEdit} onDelete={handleDelete} />
         ))}
       </div>
+
+      {/* Delete Confirmation Dialog */}
+      {deleteConfirm && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white rounded-lg p-6 max-w-md w-full mx-4">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Delete Card</h3>
+            <p className="text-gray-600 mb-4">
+              Are you sure you want to delete "{cards.find(c => c.id === deleteConfirm)?.name}"? This action cannot be undone.
+            </p>
+            <div className="flex justify-end gap-3">
+              <Button variant="outline" onClick={() => setDeleteConfirm(null)}>
+                Cancel
+              </Button>
+              <Button 
+                onClick={() => confirmDelete(deleteConfirm)}
+                className="bg-red-600 hover:bg-red-700 text-white"
+              >
+                <Trash2 className="h-4 w-4 mr-2" />
+                Delete
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
