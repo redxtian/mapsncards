@@ -30,16 +30,10 @@ export function Header() {
               Dashboard
             </Link>
             <Link 
-              href="/maps" 
+              href="/cards" 
               className="text-gray-700 hover:text-blue-600 font-medium"
             >
-              Maps
-            </Link>
-            <Link 
-              href="/topics" 
-              className="text-gray-700 hover:text-blue-600 font-medium"
-            >
-              Topics
+              Cards
             </Link>
           </nav>
 
@@ -81,10 +75,7 @@ export function Header() {
                   <Link href="/dashboard">Dashboard</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                  <Link href="/maps">Maps</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/topics">Topics</Link>
+                  <Link href="/cards">Cards</Link>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
