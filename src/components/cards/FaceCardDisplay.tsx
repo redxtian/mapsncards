@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Filter, RefreshCw, Search, Plus, Upload, Trash2, X, Star, Clock, TrendingUp } from "lucide-react";
+import { Filter, RefreshCw, Search, Plus, Upload, Trash2, X, Star, Clock, TrendingUp, Grid3X3, List, LayoutGrid, ArrowUpDown, ArrowUp, ArrowDown, CheckSquare, Square } from "lucide-react";
 import Link from "next/link";
 import { cardOperations, CardItem } from "@/lib/firebase";
 
@@ -36,6 +36,22 @@ const FILTER_PRESETS: FilterPreset[] = [
     icon: <TrendingUp className="h-3 w-3" />,
     filters: { tier: "L1" }
   }
+];
+
+type GridDensity = "compact" | "comfortable" | "spacious";
+type SortOption = "newest" | "oldest" | "alphabetical" | "tier";
+
+const GRID_DENSITY_CONFIG: Record<GridDensity, { cols: string; gap: string; cardSize: string }> = {
+  compact: { cols: "grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4", gap: "gap-3", cardSize: "p-4" },
+  comfortable: { cols: "grid-cols-1 sm:grid-cols-2 xl:grid-cols-3", gap: "gap-4", cardSize: "p-5" },
+  spacious: { cols: "grid-cols-1 sm:grid-cols-1 md:grid-cols-2", gap: "gap-6", cardSize: "p-6" }
+};
+
+const SORT_OPTIONS: Array<{value: SortOption, label: string, icon: React.ReactNode}> = [
+  { value: "newest", label: "Newest First", icon: <ArrowDown className="h-3 w-3" /> },
+  { value: "oldest", label: "Oldest First", icon: <ArrowUp className="h-3 w-3" /> },
+  { value: "alphabetical", label: "A-Z", icon: <ArrowUpDown className="h-3 w-3" /> },
+  { value: "tier", label: "By Tier", icon: <TrendingUp className="h-3 w-3" /> }
 ];
 
 const Badge = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => (
@@ -106,12 +122,17 @@ const leverageColors: Record<CardItem["leverage"], string> = {
 // FaceCard component
 // ————————————————————————————————————————————————
 
-function FaceCard({ item, onDelete }: { 
+function FaceCard({ item, onDelete, density, isSelected, onSelect }: { 
   item: CardItem; 
   onDelete?: (item: CardItem) => void;
+  density: GridDensity;
+  isSelected?: boolean;
+  onSelect?: (id: string) => void;
 }) {
   const [mode, setMode] = useState<"direct" | "inception">("direct");
   const [lineIdx, setLineIdx] = useState(0);
+  
+  const densityConfig = GRID_DENSITY_CONFIG[density];
 
   const phrases = item.modes[mode];
   const phrase = phrases[Math.min(lineIdx, Math.max(phrases.length - 1, 0))] || "";
@@ -125,17 +146,33 @@ function FaceCard({ item, onDelete }: {
   return (
     <motion.div
       layout
-      className="group relative flex h-full flex-col rounded-3xl border border-zinc-200 bg-white p-5 shadow-sm transition-all hover:shadow-md"
+      className={`group relative flex h-full flex-col rounded-3xl border transition-all hover:shadow-md ${
+        isSelected 
+          ? "border-blue-500 bg-blue-50 shadow-md" 
+          : "border-zinc-200 bg-white shadow-sm"
+      } ${densityConfig.cardSize}`}
       whileHover={{ y: -2 }}
     >
       {/* Header */}
       <div className="mb-3 flex items-start justify-between gap-2">
         <div className="flex-1">
-          <h3 className="font-semibold text-zinc-900">{item.name}</h3>
-          <div className="mt-1 flex items-center gap-2">
-            <Badge className={leverageColors[item.leverage]}>{item.leverage}</Badge>
-            <Badge className="bg-zinc-100 text-zinc-700">{item.intent}</Badge>
-            <Badge className="bg-zinc-100 text-zinc-700">{item.tier}</Badge>
+          <div className="flex items-start gap-3">
+            {onSelect && (
+              <button
+                onClick={() => onSelect(item.id)}
+                className="mt-1 text-zinc-400 hover:text-zinc-600 transition-colors"
+              >
+                {isSelected ? <CheckSquare className="h-4 w-4" /> : <Square className="h-4 w-4" />}
+              </button>
+            )}
+            <div className="flex-1">
+              <h3 className="font-semibold text-zinc-900">{item.name}</h3>
+              <div className="mt-1 flex items-center gap-2">
+                <Badge className={leverageColors[item.leverage]}>{item.leverage}</Badge>
+                <Badge className="bg-zinc-100 text-zinc-700">{item.intent}</Badge>
+                <Badge className="bg-zinc-100 text-zinc-700">{item.tier}</Badge>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -261,6 +298,10 @@ export default function FaceCardDisplay() {
   const [activeFilters, setActiveFilters] = useState<Array<{type: string, value: string, label: string}>>([]);
   const [searchSuggestions, setSearchSuggestions] = useState<string[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [gridDensity, setGridDensity] = useState<GridDensity>("comfortable");
+  const [sortBy, setSortBy] = useState<SortOption>("newest");
+  const [selectedCards, setSelectedCards] = useState<Set<string>>(new Set());
+  const [bulkMode, setBulkMode] = useState(false);
 
   // Load cards from Supabase
   useEffect(() => {
@@ -335,22 +376,93 @@ export default function FaceCardDisplay() {
       await cardOperations.delete(cardId);
       setCards(prev => prev.filter(c => c.id !== cardId));
       setDeleteConfirm(null);
+      // Remove from selection if it was selected
+      if (selectedCards.has(cardId)) {
+        setSelectedCards(prev => {
+          const newSet = new Set(prev);
+          newSet.delete(cardId);
+          return newSet;
+        });
+      }
     } catch (err) {
       console.error('Error deleting card:', err);
       alert('Failed to delete card. Please try again.');
     }
   };
 
-  const filtered = useMemo(() => {
+  // Bulk operations
+  const toggleCardSelection = (cardId: string) => {
+    setSelectedCards(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(cardId)) {
+        newSet.delete(cardId);
+      } else {
+        newSet.add(cardId);
+      }
+      return newSet;
+    });
+  };
+
+  const selectAllVisible = () => {
+    setSelectedCards(new Set(filteredAndSorted.map(card => card.id)));
+  };
+
+  const clearSelection = () => {
+    setSelectedCards(new Set());
+  };
+
+  const bulkDelete = async () => {
+    if (selectedCards.size === 0) return;
+    
+    const cardNames = filteredAndSorted
+      .filter(c => selectedCards.has(c.id))
+      .map(c => c.name)
+      .slice(0, 3)
+      .join(", ");
+    
+    if (confirm(`Delete ${selectedCards.size} selected cards including "${cardNames}"${selectedCards.size > 3 ? ' and others' : ''}? This cannot be undone.`)) {
+      try {
+        for (const cardId of selectedCards) {
+          await cardOperations.delete(cardId);
+        }
+        setCards(prev => prev.filter(c => !selectedCards.has(c.id)));
+        clearSelection();
+      } catch (err) {
+        console.error('Error bulk deleting cards:', err);
+        alert('Failed to delete some cards. Please try again.');
+      }
+    }
+  };
+
+  const filteredAndSorted = useMemo(() => {
     const q = query.trim().toLowerCase();
-    return cards.filter((c) => {
+    let filtered = cards.filter((c) => {
       const hit = !q || [c.name, c.summary, c.id, c.leverage, c.intent, ...c.modes.direct, ...c.modes.inception, ...c.steps, c.recovery].join("\n").toLowerCase().includes(q);
       const okLev = lev === "All" || c.leverage === lev;
       const okInt = intent === "All" || c.intent === intent;
       const okTier = tier === "All" || c.tier === tier;
       return hit && okLev && okInt && okTier;
     });
-  }, [cards, query, lev, intent, tier]);
+
+    // Apply sorting
+    filtered.sort((a, b) => {
+      switch (sortBy) {
+        case "newest":
+          return (b.created_at?.getTime() || 0) - (a.created_at?.getTime() || 0);
+        case "oldest":
+          return (a.created_at?.getTime() || 0) - (b.created_at?.getTime() || 0);
+        case "alphabetical":
+          return a.name.localeCompare(b.name);
+        case "tier":
+          const tierOrder = { "L1": 1, "L2": 2, "L3": 3, "L4": 4, "L5": 5 };
+          return (tierOrder[a.tier] || 999) - (tierOrder[b.tier] || 999);
+        default:
+          return 0;
+      }
+    });
+
+    return filtered;
+  }, [cards, query, lev, intent, tier, sortBy]);
 
   if (loading) {
     return (
@@ -383,18 +495,69 @@ export default function FaceCardDisplay() {
     return (
       <div className="mx-auto max-w-7xl p-6">
         <div className="text-center py-12">
-          <div className="text-gray-400 mb-4">
-            <svg className="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-            </svg>
+          <div className="text-gray-400 mb-6">
+            <LayoutGrid className="h-16 w-16 mx-auto" strokeWidth={1} />
           </div>
-          <h3 className="text-lg font-medium text-gray-900 mb-2">No Cards Found</h3>
-          <p className="text-gray-600 mb-4">Get started by adding your first card to the database.</p>
+          <h3 className="text-2xl font-semibold text-gray-900 mb-3">Your Card Library is Empty</h3>
+          <p className="text-gray-600 mb-6 max-w-md mx-auto">
+            Start building your negotiation toolkit by adding cards. You can upload JSON files with multiple cards or create them individually.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <Button asChild>
+              <Link href="/cards/input">
+                <Upload className="h-4 w-4 mr-2" />
+                Import Card Collection
+              </Link>
+            </Button>
+            <Button variant="outline" asChild>
+              <Link href="/cards/input">
+                <Plus className="h-4 w-4 mr-2" />
+                Create First Card
+              </Link>
+            </Button>
+          </div>
+          <div className="mt-8 text-sm text-gray-500">
+            <p>💡 <strong>Pro tip:</strong> Upload a JSON array to quickly populate your library with multiple cards</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (filteredAndSorted.length === 0) {
+    return (
+      <div className="mx-auto max-w-7xl p-6">
+        {/* Header and controls would still be shown */}
+        <div className="mb-6 flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900">Card Library</h1>
+            <p className="text-gray-600">Browse and use your negotiation cards</p>
+          </div>
           <Button asChild>
             <Link href="/cards/input">
-              <Upload className="h-4 w-4 mr-2" />
-              Add Cards via JSON
+              <Plus className="h-4 w-4 mr-2" />
+              Add Cards
             </Link>
+          </Button>
+        </div>
+        
+        <div className="text-center py-16">
+          <div className="text-gray-400 mb-4">
+            <Search className="h-12 w-12 mx-auto" strokeWidth={1} />
+          </div>
+          <h3 className="text-lg font-medium text-gray-900 mb-2">No cards match your current filters</h3>
+          <p className="text-gray-600 mb-4">Try adjusting your search terms or clearing some filters to see more results.</p>
+          <Button 
+            variant="outline"
+            onClick={() => {
+              setQuery("");
+              setLev("All");
+              setIntent("All");
+              setTier("All");
+            }}
+          >
+            <X className="h-4 w-4 mr-2" />
+            Clear All Filters
           </Button>
         </div>
       </div>
@@ -463,6 +626,92 @@ export default function FaceCardDisplay() {
           </button>
         </div>
       )}
+
+      {/* Layout Controls */}
+      <div className="mb-4 flex flex-wrap items-center justify-between gap-4">
+        <div className="flex items-center gap-4">
+          {/* Grid Density */}
+          <div className="flex items-center gap-2">
+            <span className="text-sm font-medium text-zinc-700">Density:</span>
+            <div className="flex items-center border border-zinc-200 rounded-lg p-1">
+              {(["compact", "comfortable", "spacious"] as GridDensity[]).map((density) => {
+                const Icon = density === "compact" ? Grid3X3 : density === "comfortable" ? LayoutGrid : List;
+                return (
+                  <button
+                    key={density}
+                    onClick={() => setGridDensity(density)}
+                    className={`flex items-center gap-1 px-2 py-1 rounded text-xs font-medium transition-colors ${
+                      gridDensity === density
+                        ? "bg-zinc-900 text-white"
+                        : "text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100"
+                    }`}
+                    title={`${density.charAt(0).toUpperCase() + density.slice(1)} view`}
+                  >
+                    <Icon className="h-3 w-3" />
+                    <span className="hidden sm:inline">{density.charAt(0).toUpperCase() + density.slice(1)}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Sort Controls */}
+          <div className="flex items-center gap-2">
+            <span className="text-sm font-medium text-zinc-700">Sort:</span>
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value as SortOption)}
+              className="rounded-lg border border-zinc-200 px-2 py-1 text-sm focus:border-zinc-900 focus:outline-none focus:ring-1 focus:ring-zinc-900"
+            >
+              {SORT_OPTIONS.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+
+        {/* Bulk Actions */}
+        <div className="flex items-center gap-2">
+          <Button
+            variant={bulkMode ? "default" : "outline"}
+            onClick={() => {
+              setBulkMode(!bulkMode);
+              if (bulkMode) clearSelection();
+            }}
+            className="text-sm"
+          >
+            <CheckSquare className="h-4 w-4 mr-1" />
+            {bulkMode ? "Exit Bulk" : "Bulk Select"}
+          </Button>
+          
+          {bulkMode && (
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-zinc-600">{selectedCards.size} selected</span>
+              {selectedCards.size > 0 && (
+                <>
+                  <Button variant="outline" onClick={clearSelection} className="text-xs px-2 py-1">
+                    Clear
+                  </Button>
+                  <Button 
+                    variant="outline" 
+                    onClick={bulkDelete} 
+                    className="text-xs px-2 py-1 text-red-600 hover:text-red-700 hover:bg-red-50"
+                  >
+                    Delete {selectedCards.size}
+                  </Button>
+                </>
+              )}
+              {selectedCards.size < filteredAndSorted.length && (
+                <Button variant="outline" onClick={selectAllVisible} className="text-xs px-2 py-1">
+                  Select All ({filteredAndSorted.length})
+                </Button>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
 
       {/* Enhanced Search and Filters */}
       <div className="mb-6 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5">
@@ -540,7 +789,7 @@ export default function FaceCardDisplay() {
         </div>
 
         <div className="flex items-center justify-between rounded-2xl border border-zinc-200 bg-white px-3 py-2.5">
-          <div className="flex items-center gap-2 text-sm text-zinc-600"><Filter className="h-4 w-4"/> {filtered.length} / {cards.length} cards</div>
+          <div className="flex items-center gap-2 text-sm text-zinc-600"><Filter className="h-4 w-4"/> {filteredAndSorted.length} / {cards.length} cards</div>
           <button
             className="text-sm font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 hover:decoration-zinc-900"
             onClick={() => { setQuery(""); setLev("All"); setIntent("All"); setTier("All"); }}
@@ -551,9 +800,16 @@ export default function FaceCardDisplay() {
       </div>
 
       {/* Grid */}
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
-        {filtered.map((c) => (
-          <FaceCard key={c.id} item={c} onDelete={handleDelete} />
+      <div className={`grid ${GRID_DENSITY_CONFIG[gridDensity].cols} ${GRID_DENSITY_CONFIG[gridDensity].gap}`}>
+        {filteredAndSorted.map((c) => (
+          <FaceCard 
+            key={c.id} 
+            item={c} 
+            onDelete={handleDelete}
+            density={gridDensity}
+            isSelected={selectedCards.has(c.id)}
+            onSelect={bulkMode ? toggleCardSelection : undefined}
+          />
         ))}
       </div>
 
