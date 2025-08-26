@@ -1,48 +1,57 @@
+'use client';
+
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Upload, CreditCard, BarChart3, TrendingUp, Eye, Library } from 'lucide-react';
+import { Upload, CreditCard, BarChart3, TrendingUp, Eye, Library, Loader2 } from 'lucide-react';
+import { useCardStats } from '@/hooks/use-cards';
 
 export default function DashboardPage() {
-  // This will be replaced with real data from Firebase
-  const recentCards = [
-    {
-      id: 'market_research_leverage',
-      name: 'Market Research Leverage',
-      leverage: 'Informational',
-      intent: 'Extract',
-      createdAt: '2025-08-25',
-    },
-    {
-      id: 'performance_documentation',  
-      name: 'Performance Documentation',
-      leverage: 'Informational',
-      intent: 'Extract',
-      createdAt: '2025-08-25',
-    },
-    {
-      id: 'timing_strategy',  
-      name: 'Strategic Timing',
-      leverage: 'Relational',
-      intent: 'Increase',
-      createdAt: '2025-08-25',
-    },
-  ];
+  const { data: stats, isLoading, error } = useCardStats();
 
-  const stats = {
-    totalCards: 3,
+  // Loading state
+  if (isLoading) {
+    return (
+      <div className="container mx-auto px-4 py-8">
+        <div className="flex items-center justify-center min-h-[200px]">
+          <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+          <span className="ml-2 text-gray-600">Loading dashboard...</span>
+        </div>
+      </div>
+    );
+  }
+
+  // Error state
+  if (error) {
+    return (
+      <div className="container mx-auto px-4 py-8">
+        <div className="text-center py-8">
+          <div className="text-red-600 mb-4">Error loading dashboard data</div>
+          <Button onClick={() => window.location.reload()}>
+            Retry
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
+  // Default stats if no data (shouldn't happen but good fallback)
+  const safeStats = stats || {
+    totalCards: 0,
     leverageTypes: {
-      'Informational': 2,
-      'Relational': 1,
+      'Informational': 0,
+      'Relational': 0,
       'Resource': 0,
       'Urgency': 0,
       'Narrative': 0,
       'Authority': 0
     },
     intentTypes: {
-      'Extract': 2,
-      'Increase': 1
-    }
+      'Extract': 0,
+      'Increase': 0
+    },
+    mostUsedLeverage: { type: 'None', count: 0 },
+    recentCards: []
   };
 
   return (
@@ -79,7 +88,7 @@ export default function DashboardPage() {
             <CreditCard className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{stats.totalCards}</div>
+            <div className="text-2xl font-bold">{safeStats.totalCards}</div>
             <p className="text-xs text-muted-foreground">
               Active negotiation cards
             </p>
@@ -92,7 +101,7 @@ export default function DashboardPage() {
             <BarChart3 className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{Object.values(stats.leverageTypes).filter(v => v > 0).length}</div>
+            <div className="text-2xl font-bold">{Object.values(safeStats.leverageTypes).filter(v => v > 0).length}</div>
             <p className="text-xs text-muted-foreground">
               Different leverage strategies
             </p>
@@ -105,9 +114,9 @@ export default function DashboardPage() {
             <TrendingUp className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">Informational</div>
+            <div className="text-2xl font-bold">{safeStats.mostUsedLeverage.type}</div>
             <p className="text-xs text-muted-foreground">
-              {stats.leverageTypes.Informational} cards using this type
+              {safeStats.mostUsedLeverage.count} cards using this type
             </p>
           </CardContent>
         </Card>
@@ -118,7 +127,7 @@ export default function DashboardPage() {
             <BarChart3 className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{stats.intentTypes.Extract}:{stats.intentTypes.Increase}</div>
+            <div className="text-2xl font-bold">{safeStats.intentTypes.Extract}:{safeStats.intentTypes.Increase}</div>
             <p className="text-xs text-muted-foreground">
               Extract vs Increase ratio
             </p>
@@ -134,14 +143,14 @@ export default function DashboardPage() {
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
-              {Object.entries(stats.leverageTypes).map(([type, count]) => (
+              {Object.entries(safeStats.leverageTypes).map(([type, count]) => (
                 <div key={type} className="flex items-center justify-between">
                   <span className="text-sm font-medium">{type}</span>
                   <div className="flex items-center gap-2">
                     <div className="w-16 h-2 bg-gray-200 rounded-full overflow-hidden">
                       <div 
                         className="h-full bg-blue-500 rounded-full transition-all"
-                        style={{ width: `${(count / stats.totalCards) * 100}%` }}
+                        style={{ width: `${safeStats.totalCards > 0 ? (count / safeStats.totalCards) * 100 : 0}%` }}
                       />
                     </div>
                     <span className="text-sm text-gray-600 w-4">{count}</span>
@@ -192,7 +201,7 @@ export default function DashboardPage() {
           </div>
         </CardHeader>
         <CardContent>
-          {recentCards.length === 0 ? (
+          {safeStats.recentCards.length === 0 ? (
             <div className="text-center py-8">
               <CreditCard className="h-12 w-12 text-gray-400 mx-auto mb-4" />
               <h3 className="text-lg font-medium text-gray-900 mb-2">
@@ -210,7 +219,7 @@ export default function DashboardPage() {
             </div>
           ) : (
             <div className="space-y-4">
-              {recentCards.map((card) => (
+              {safeStats.recentCards.map((card) => (
                 <div
                   key={card.id}
                   className="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50"
@@ -222,7 +231,7 @@ export default function DashboardPage() {
                     <div>
                       <h4 className="font-medium text-gray-900">{card.name}</h4>
                       <p className="text-sm text-gray-500">
-                        {card.leverage} • {card.intent} • {new Date(card.createdAt).toLocaleDateString()}
+                        {card.leverage} • {card.intent} • {card.created_at ? new Date(card.created_at).toLocaleDateString() : 'No date'}
                       </p>
                     </div>
                   </div>

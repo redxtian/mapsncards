@@ -8,7 +8,7 @@ import {
   DropdownMenuItem, 
   DropdownMenuTrigger 
 } from '@/components/ui/dropdown-menu';
-import { Menu, User, Map, PlusCircle } from 'lucide-react';
+import { Menu, User, Map } from 'lucide-react';
 
 export function Header() {
   return (
@@ -39,13 +39,6 @@ export function Header() {
 
           {/* Actions */}
           <div className="flex items-center space-x-4">
-            <Button asChild variant="outline" size="sm">
-              <Link href="/maps/create">
-                <PlusCircle className="h-4 w-4 mr-2" />
-                Create Map
-              </Link>
-            </Button>
-
             {/* User Menu */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>

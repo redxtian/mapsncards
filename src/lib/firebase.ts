@@ -34,7 +34,7 @@ export type CardItem = {
   id: string;
   name: string;
   summary: string;
-  tier: "L1";
+  tier: "L1" | "L2" | "L3" | "L4" | "L5";
   leverage: "Informational" | "Relational" | "Resource" | "Urgency" | "Narrative" | "Authority";
   intent: "Extract" | "Increase";
   modes: { direct: string[]; inception: string[] };

@@ -292,6 +292,7 @@ export default function FaceCardDisplay() {
   const [query, setQuery] = useState("");
   const [lev, setLev] = useState<"All" | CardItem["leverage"]>("All");
   const [intent, setIntent] = useState<"All" | CardItem["intent"]>("All");
+  const [tier, setTier] = useState<"All" | CardItem["tier"]>("All");
   const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
 
   // Load cards from Supabase
@@ -343,9 +344,10 @@ export default function FaceCardDisplay() {
       const hit = !q || [c.name, c.summary, c.id, c.leverage, c.intent, ...c.modes.direct, ...c.modes.inception, ...c.steps, c.recovery].join("\n").toLowerCase().includes(q);
       const okLev = lev === "All" || c.leverage === lev;
       const okInt = intent === "All" || c.intent === intent;
-      return hit && okLev && okInt;
+      const okTier = tier === "All" || c.tier === tier;
+      return hit && okLev && okInt && okTier;
     });
-  }, [cards, query, lev, intent]);
+  }, [cards, query, lev, intent, tier]);
 
   if (loading) {
     return (
@@ -413,7 +415,7 @@ export default function FaceCardDisplay() {
       </div>
 
       {/* Toolbar */}
-      <div className="mb-6 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mb-6 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5">
         <div className="relative">
           <input
             value={query}
@@ -450,11 +452,24 @@ export default function FaceCardDisplay() {
           </select>
         </div>
 
+        <div className="flex items-center gap-2">
+          <span className="text-sm text-zinc-600">Tier</span>
+          <select
+            value={tier}
+            onChange={(e) => setTier(e.target.value as any)}
+            className="ml-auto w-full rounded-2xl border border-zinc-300 bg-white px-3 py-2 text-sm focus:border-zinc-900 focus:outline-none focus:ring-2 focus:ring-zinc-900"
+          >
+            {(["All", "L1", "L2", "L3", "L4", "L5"] as const).map((x) => (
+              <option key={x} value={x}>{x}</option>
+            ))}
+          </select>
+        </div>
+
         <div className="flex items-center justify-between rounded-2xl border border-zinc-200 bg-white px-3 py-2.5">
           <div className="flex items-center gap-2 text-sm text-zinc-600"><Filter className="h-4 w-4"/> {filtered.length} / {cards.length} cards</div>
           <button
             className="text-sm font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 hover:decoration-zinc-900"
-            onClick={() => { setQuery(""); setLev("All"); setIntent("All"); }}
+            onClick={() => { setQuery(""); setLev("All"); setIntent("All"); setTier("All"); }}
           >
             Reset
           </button>
