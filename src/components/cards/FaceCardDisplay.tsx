@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Filter, RefreshCw, Check, ClipboardList, Clipboard, Search, Plus, Upload, Edit, Trash2, MoreHorizontal } from "lucide-react";
+import { Filter, Search, Plus, Upload, Trash2 } from "lucide-react";
 import Link from "next/link";
 import { cardOperations, CardItem } from "@/lib/firebase";
 
@@ -76,49 +76,14 @@ const leverageHue: Record<CardItem["leverage"], string> = {
 // FaceCard component
 // ————————————————————————————————————————————————
 
-function FaceCard({ item, onEdit, onDelete }: { 
+function FaceCard({ item, onDelete }: { 
   item: CardItem; 
-  onEdit?: (item: CardItem) => void;
   onDelete?: (item: CardItem) => void;
 }) {
   const [mode, setMode] = useState<"direct" | "inception">("direct");
-  const [lineIdx, setLineIdx] = useState(0);
-  const [copied, setCopied] = useState<"none" | "phrase" | "play">("none");
-  const [showMenu, setShowMenu] = useState(false);
 
   const phrases = item.modes[mode];
-
-  // Close menu when clicking outside
-  useEffect(() => {
-    function handleClickOutside(_event: MouseEvent) {
-      if (showMenu) {
-        setShowMenu(false);
-      }
-    }
-    
-    if (showMenu) {
-      document.addEventListener('click', handleClickOutside);
-      return () => document.removeEventListener('click', handleClickOutside);
-    }
-    return undefined;
-  }, [showMenu]);
-  const phrase = phrases[Math.min(lineIdx, Math.max(phrases.length - 1, 0))] || "";
-
-  function cycle(delta: number) {
-    if (!phrases.length) return;
-    const next = (lineIdx + delta + phrases.length) % phrases.length;
-    setLineIdx(next);
-  }
-
-  async function copy(text: string, which: "phrase" | "play") {
-    try {
-      await navigator.clipboard.writeText(text);
-      setCopied(which);
-      setTimeout(() => setCopied("none"), 1200);
-    } catch {}
-  }
-
-  const playBlock = `— ${item.name} (${item.tier})\nMode: ${mode}\n\nPhrase:\n${phrase}\n\nSteps:\n1) ${item.steps[0]}\n2) ${item.steps[1]}\n3) ${item.steps[2]}\n\nRecovery:\n${item.recovery}`;
+  const phrase = phrases[0] || "";
 
   return (
     <motion.div
@@ -146,13 +111,13 @@ function FaceCard({ item, onEdit, onDelete }: {
         <div className="grid grid-cols-2 rounded-2xl border border-zinc-300 p-1">
           <button
             className={`rounded-xl px-3 py-1 text-sm font-medium ${mode === "direct" ? "bg-zinc-900 text-white" : "text-zinc-700 hover:bg-zinc-100"}`}
-            onClick={() => { setMode("direct"); setLineIdx(0); }}
+            onClick={() => setMode("direct")}
           >
             Direct
           </button>
           <button
             className={`rounded-xl px-3 py-1 text-sm font-medium ${mode === "inception" ? "bg-zinc-900 text-white" : "text-zinc-700 hover:bg-zinc-100"}`}
-            onClick={() => { setMode("inception"); setLineIdx(0); }}
+            onClick={() => setMode("inception")}
           >
             Inception
           </button>
@@ -166,7 +131,7 @@ function FaceCard({ item, onEdit, onDelete }: {
           <div className="relative">
             <AnimatePresence mode="wait" initial={false}>
               <motion.div
-                key={mode + ":" + lineIdx}
+                key={mode}
                 initial={{ rotateX: 90, opacity: 0 }}
                 animate={{ rotateX: 0, opacity: 1 }}
                 exit={{ rotateX: -90, opacity: 0 }}
@@ -176,27 +141,6 @@ function FaceCard({ item, onEdit, onDelete }: {
                 {phrase || <span className="text-zinc-400">No phrase</span>}
               </motion.div>
             </AnimatePresence>
-            <div className="mt-2 flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <div className="text-xs text-zinc-500">{phrases.length} option{phrases.length !== 1 ? "s" : ""}</div>
-                {phrases.length > 1 && (
-                  <div className="text-xs bg-zinc-200 text-zinc-700 px-2 py-1 rounded-full">
-                    {lineIdx + 1} of {phrases.length}
-                  </div>
-                )}
-              </div>
-              <div className="flex items-center gap-2">
-                <Button variant="outline" onClick={() => cycle(-1)} ariaLabel="Previous phrase">
-                  <RefreshCw className="h-4 w-4 -scale-x-100" /> Prev
-                </Button>
-                <Button variant="outline" onClick={() => cycle(1)} ariaLabel="Next phrase">
-                  Next <RefreshCw className="h-4 w-4" />
-                </Button>
-                <Button onClick={() => copy(phrase, "phrase")} ariaLabel="Copy phrase">
-                  {copied === "phrase" ? <><Check className="h-4 w-4"/> Copied</> : <><Clipboard className="h-4 w-4"/> Copy</>}
-                </Button>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -223,59 +167,15 @@ function FaceCard({ item, onEdit, onDelete }: {
       </div>
 
       {/* Footer */}
-      <div className="mt-auto flex items-center justify-between gap-2">
-        <div className="flex flex-wrap items-center gap-1">
-          {item.telemetry_keys.map((k) => (
-            <Badge key={k} className="bg-zinc-100 text-zinc-700">{k}</Badge>
-          ))}
-        </div>
-        <div className="flex items-center gap-2">
-          <Button variant="outline" onClick={() => copy(playBlock, "play")} ariaLabel="Copy full play">
-            {copied === "play" ? <><Check className="h-4 w-4"/> Play Copied</> : <><ClipboardList className="h-4 w-4"/> Copy Play</>}
-          </Button>
-          
-          {/* Card Actions Menu */}
-          <div className="relative">
-            <Button 
-              variant="ghost" 
-              onClick={(e) => {
-                e?.stopPropagation();
-                setShowMenu(!showMenu);
-              }} 
-              ariaLabel="Card actions"
-            >
-              <MoreHorizontal className="h-4 w-4" />
-            </Button>
-            
-            {showMenu && (
-              <div 
-                className="absolute right-0 top-full z-10 mt-1 min-w-[120px] rounded-lg border border-zinc-200 bg-white shadow-lg"
-                onClick={(e) => e?.stopPropagation()}
-              >
-                <button
-                  className="flex w-full items-center gap-2 px-3 py-2 text-left text-sm text-zinc-700 hover:bg-zinc-50 first:rounded-t-lg"
-                  onClick={() => {
-                    onEdit?.(item);
-                    setShowMenu(false);
-                  }}
-                >
-                  <Edit className="h-4 w-4" />
-                  Edit
-                </button>
-                <button
-                  className="flex w-full items-center gap-2 px-3 py-2 text-left text-sm text-red-600 hover:bg-red-50 last:rounded-b-lg"
-                  onClick={() => {
-                    onDelete?.(item);
-                    setShowMenu(false);
-                  }}
-                >
-                  <Trash2 className="h-4 w-4" />
-                  Delete
-                </button>
-              </div>
-            )}
-          </div>
-        </div>
+      <div className="mt-auto flex items-center justify-end">
+        <Button 
+          variant="ghost" 
+          onClick={() => onDelete?.(item)}
+          ariaLabel="Delete card"
+          className="text-red-600 hover:text-red-700 hover:bg-red-50"
+        >
+          <Trash2 className="h-4 w-4" />
+        </Button>
       </div>
     </motion.div>
   );
@@ -313,13 +213,6 @@ export default function FaceCardDisplay() {
 
     loadCards();
   }, []);
-
-  // Handle edit card
-  const handleEdit = (item: CardItem) => {
-    // For now, we'll redirect to the JSON input page with a note about editing
-    // In a full implementation, this would open an edit modal or form
-    alert(`Edit functionality for "${item.name}" coming soon! For now, you can edit by creating a new card with the same ID to overwrite it.`);
-  };
 
   // Handle delete card
   const handleDelete = (item: CardItem) => {
@@ -479,7 +372,7 @@ export default function FaceCardDisplay() {
       {/* Grid */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
         {filtered.map((c) => (
-          <FaceCard key={c.id} item={c} onEdit={handleEdit} onDelete={handleDelete} />
+          <FaceCard key={c.id} item={c} onDelete={handleDelete} />
         ))}
       </div>
 
