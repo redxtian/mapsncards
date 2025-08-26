@@ -1,0 +1,639 @@
+[debug] [2025-08-25T15:39:51.702Z] Checked if tokens are valid: false, expires at: 1756052169064
+[debug] [2025-08-25T15:39:51.703Z] Checked if tokens are valid: false, expires at: 1756052169064
+[debug] [2025-08-25T15:39:51.703Z] > refreshing access token with scopes: []
+[debug] [2025-08-25T15:39:51.704Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-25T15:39:51.704Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-25T15:39:51.712Z] Checked if tokens are valid: false, expires at: 1756052169064
+[debug] [2025-08-25T15:39:51.712Z] Checked if tokens are valid: false, expires at: 1756052169064
+[debug] [2025-08-25T15:39:51.712Z] > refreshing access token with scopes: []
+[debug] [2025-08-25T15:39:51.713Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-25T15:39:51.713Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-25T15:39:51.713Z] Checked if tokens are valid: false, expires at: 1756052169064
+[debug] [2025-08-25T15:39:51.713Z] Checked if tokens are valid: false, expires at: 1756052169064
+[debug] [2025-08-25T15:39:51.713Z] > refreshing access token with scopes: []
+[debug] [2025-08-25T15:39:51.713Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-25T15:39:51.713Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-25T15:39:51.714Z] Checked if tokens are valid: false, expires at: 1756052169064
+[debug] [2025-08-25T15:39:51.714Z] Checked if tokens are valid: false, expires at: 1756052169064
+[debug] [2025-08-25T15:39:51.714Z] > refreshing access token with scopes: []
+[debug] [2025-08-25T15:39:51.714Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-25T15:39:51.714Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-25T15:39:51.714Z] Checked if tokens are valid: false, expires at: 1756052169064
+[debug] [2025-08-25T15:39:51.714Z] Checked if tokens are valid: false, expires at: 1756052169064
+[debug] [2025-08-25T15:39:51.714Z] > refreshing access token with scopes: []
+[debug] [2025-08-25T15:39:51.714Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-25T15:39:51.714Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-25T15:39:51.714Z] Checked if tokens are valid: false, expires at: 1756052169064
+[debug] [2025-08-25T15:39:51.714Z] Checked if tokens are valid: false, expires at: 1756052169064
+[debug] [2025-08-25T15:39:51.714Z] > refreshing access token with scopes: []
+[debug] [2025-08-25T15:39:51.714Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-25T15:39:51.714Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-25T15:39:51.715Z] Checked if tokens are valid: false, expires at: 1756052169064
+[debug] [2025-08-25T15:39:51.715Z] Checked if tokens are valid: false, expires at: 1756052169064
+[debug] [2025-08-25T15:39:51.715Z] > refreshing access token with scopes: []
+[debug] [2025-08-25T15:39:51.715Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-25T15:39:51.715Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-25T15:39:51.715Z] Checked if tokens are valid: false, expires at: 1756052169064
+[debug] [2025-08-25T15:39:51.715Z] Checked if tokens are valid: false, expires at: 1756052169064
+[debug] [2025-08-25T15:39:51.715Z] > refreshing access token with scopes: []
+[debug] [2025-08-25T15:39:51.715Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-25T15:39:51.715Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-25T15:39:51.715Z] Checked if tokens are valid: false, expires at: 1756052169064
+[debug] [2025-08-25T15:39:51.715Z] Checked if tokens are valid: false, expires at: 1756052169064
+[debug] [2025-08-25T15:39:51.715Z] > refreshing access token with scopes: []
+[debug] [2025-08-25T15:39:51.716Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-25T15:39:51.716Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-25T15:39:51.721Z] Checked if tokens are valid: false, expires at: 1756052169064
+[debug] [2025-08-25T15:39:51.721Z] Checked if tokens are valid: false, expires at: 1756052169064
+[debug] [2025-08-25T15:39:51.721Z] > refreshing access token with scopes: []
+[debug] [2025-08-25T15:39:51.721Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-25T15:39:51.721Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-25T15:39:51.722Z] Checked if tokens are valid: false, expires at: 1756052169064
+[debug] [2025-08-25T15:39:51.722Z] Checked if tokens are valid: false, expires at: 1756052169064
+[debug] [2025-08-25T15:39:51.722Z] > refreshing access token with scopes: []
+[debug] [2025-08-25T15:39:51.722Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-25T15:39:51.722Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-25T15:39:51.722Z] Checked if tokens are valid: false, expires at: 1756052169064
+[debug] [2025-08-25T15:39:51.722Z] Checked if tokens are valid: false, expires at: 1756052169064
+[debug] [2025-08-25T15:39:51.722Z] > refreshing access token with scopes: []
+[debug] [2025-08-25T15:39:51.722Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-25T15:39:51.722Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-25T15:39:51.722Z] Checked if tokens are valid: false, expires at: 1756052169064
+[debug] [2025-08-25T15:39:51.722Z] Checked if tokens are valid: false, expires at: 1756052169064
+[debug] [2025-08-25T15:39:51.722Z] > refreshing access token with scopes: []
+[debug] [2025-08-25T15:39:51.722Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-25T15:39:51.722Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-25T15:39:51.723Z] Checked if tokens are valid: false, expires at: 1756052169064
+[debug] [2025-08-25T15:39:51.723Z] Checked if tokens are valid: false, expires at: 1756052169064
+[debug] [2025-08-25T15:39:51.723Z] > refreshing access token with scopes: []
+[debug] [2025-08-25T15:39:51.723Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-25T15:39:51.723Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-25T15:39:51.723Z] Checked if tokens are valid: false, expires at: 1756052169064
+[debug] [2025-08-25T15:39:51.723Z] Checked if tokens are valid: false, expires at: 1756052169064
+[debug] [2025-08-25T15:39:51.723Z] > refreshing access token with scopes: []
+[debug] [2025-08-25T15:39:51.723Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-25T15:39:51.723Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-25T15:39:51.723Z] Checked if tokens are valid: false, expires at: 1756052169064
+[debug] [2025-08-25T15:39:51.723Z] Checked if tokens are valid: false, expires at: 1756052169064
+[debug] [2025-08-25T15:39:51.723Z] > refreshing access token with scopes: []
+[debug] [2025-08-25T15:39:51.723Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-25T15:39:51.723Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-25T15:39:51.723Z] Checked if tokens are valid: false, expires at: 1756052169064
+[debug] [2025-08-25T15:39:51.723Z] Checked if tokens are valid: false, expires at: 1756052169064
+[debug] [2025-08-25T15:39:51.723Z] > refreshing access token with scopes: []
+[debug] [2025-08-25T15:39:51.723Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-25T15:39:51.723Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-25T15:39:51.724Z] Checked if tokens are valid: false, expires at: 1756052169064
+[debug] [2025-08-25T15:39:51.724Z] Checked if tokens are valid: false, expires at: 1756052169064
+[debug] [2025-08-25T15:39:51.724Z] > refreshing access token with scopes: []
+[debug] [2025-08-25T15:39:51.724Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-25T15:39:51.724Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-25T15:39:51.724Z] Checked if tokens are valid: false, expires at: 1756052169064
+[debug] [2025-08-25T15:39:51.724Z] Checked if tokens are valid: false, expires at: 1756052169064
+[debug] [2025-08-25T15:39:51.724Z] > refreshing access token with scopes: []
+[debug] [2025-08-25T15:39:51.724Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-25T15:39:51.724Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-25T15:39:51.724Z] Checked if tokens are valid: false, expires at: 1756052169064
+[debug] [2025-08-25T15:39:51.724Z] Checked if tokens are valid: false, expires at: 1756052169064
+[debug] [2025-08-25T15:39:51.724Z] > refreshing access token with scopes: []
+[debug] [2025-08-25T15:39:51.724Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-25T15:39:51.724Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-25T15:39:51.724Z] Checked if tokens are valid: false, expires at: 1756052169064
+[debug] [2025-08-25T15:39:51.724Z] Checked if tokens are valid: false, expires at: 1756052169064
+[debug] [2025-08-25T15:39:51.724Z] > refreshing access token with scopes: []
+[debug] [2025-08-25T15:39:51.725Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-25T15:39:51.725Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-25T15:39:51.725Z] Checked if tokens are valid: false, expires at: 1756052169064
+[debug] [2025-08-25T15:39:51.725Z] Checked if tokens are valid: false, expires at: 1756052169064
+[debug] [2025-08-25T15:39:51.725Z] > refreshing access token with scopes: []
+[debug] [2025-08-25T15:39:51.725Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-25T15:39:51.725Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-25T15:39:51.725Z] Checked if tokens are valid: false, expires at: 1756052169064
+[debug] [2025-08-25T15:39:51.725Z] Checked if tokens are valid: false, expires at: 1756052169064
+[debug] [2025-08-25T15:39:51.725Z] > refreshing access token with scopes: []
+[debug] [2025-08-25T15:39:51.725Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-25T15:39:51.725Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-25T15:39:51.725Z] Checked if tokens are valid: false, expires at: 1756052169064
+[debug] [2025-08-25T15:39:51.725Z] Checked if tokens are valid: false, expires at: 1756052169064
+[debug] [2025-08-25T15:39:51.725Z] > refreshing access token with scopes: []
+[debug] [2025-08-25T15:39:51.725Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-25T15:39:51.725Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-25T15:39:51.726Z] Checked if tokens are valid: false, expires at: 1756052169064
+[debug] [2025-08-25T15:39:51.726Z] Checked if tokens are valid: false, expires at: 1756052169064
+[debug] [2025-08-25T15:39:51.726Z] > refreshing access token with scopes: []
+[debug] [2025-08-25T15:39:51.726Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-25T15:39:51.726Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-25T15:39:51.726Z] Checked if tokens are valid: false, expires at: 1756052169064
+[debug] [2025-08-25T15:39:51.726Z] Checked if tokens are valid: false, expires at: 1756052169064
+[debug] [2025-08-25T15:39:51.726Z] > refreshing access token with scopes: []
+[debug] [2025-08-25T15:39:51.726Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-25T15:39:51.726Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-25T15:39:51.726Z] Checked if tokens are valid: false, expires at: 1756052169064
+[debug] [2025-08-25T15:39:51.726Z] Checked if tokens are valid: false, expires at: 1756052169064
+[debug] [2025-08-25T15:39:51.726Z] > refreshing access token with scopes: []
+[debug] [2025-08-25T15:39:51.726Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-25T15:39:51.726Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-25T15:39:51.873Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-25T15:39:51.873Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-25T15:39:51.903Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasedataconnect.googleapis.com [none]
+[debug] [2025-08-25T15:39:51.903Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasedataconnect.googleapis.com x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-25T15:39:51.903Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-25T15:39:51.903Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-25T15:39:51.922Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseremoteconfig.googleapis.com [none]
+[debug] [2025-08-25T15:39:51.922Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseremoteconfig.googleapis.com x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-25T15:39:51.926Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-25T15:39:51.926Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-25T15:39:51.936Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseapphosting.googleapis.com [none]
+[debug] [2025-08-25T15:39:51.936Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseapphosting.googleapis.com x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-25T15:39:51.937Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-25T15:39:51.937Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-25T15:39:51.946Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseremoteconfig.googleapis.com [none]
+[debug] [2025-08-25T15:39:51.946Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseremoteconfig.googleapis.com x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-25T15:39:51.946Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-25T15:39:51.946Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-25T15:39:51.955Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/ [none]
+[debug] [2025-08-25T15:39:51.955Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/ x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-25T15:39:51.955Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-25T15:39:51.955Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-25T15:39:51.967Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseio.com [none]
+[debug] [2025-08-25T15:39:51.967Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseio.com x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-25T15:39:51.968Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-25T15:39:51.968Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-25T15:39:51.976Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/fcm.googleapis.com [none]
+[debug] [2025-08-25T15:39:51.976Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/fcm.googleapis.com x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-25T15:39:51.977Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-25T15:39:51.977Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-25T15:39:51.987Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/identitytoolkit.googleapis.com [none]
+[debug] [2025-08-25T15:39:51.987Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/identitytoolkit.googleapis.com x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-25T15:39:51.987Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-25T15:39:51.987Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-25T15:39:51.998Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/storage.googleapis.com [none]
+[debug] [2025-08-25T15:39:51.998Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/storage.googleapis.com x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-25T15:39:51.999Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-25T15:39:51.999Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-25T15:39:52.006Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasedataconnect.googleapis.com [none]
+[debug] [2025-08-25T15:39:52.006Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasedataconnect.googleapis.com x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-25T15:39:52.007Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-25T15:39:52.007Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-25T15:39:52.018Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseio.com [none]
+[debug] [2025-08-25T15:39:52.018Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseio.com x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-25T15:39:52.019Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-25T15:39:52.019Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-25T15:39:52.029Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/ [none]
+[debug] [2025-08-25T15:39:52.029Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/ x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-25T15:39:52.030Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-25T15:39:52.030Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-25T15:39:52.040Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/storage.googleapis.com [none]
+[debug] [2025-08-25T15:39:52.040Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/storage.googleapis.com x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-25T15:39:52.041Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-25T15:39:52.041Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-25T15:39:52.053Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/identitytoolkit.googleapis.com [none]
+[debug] [2025-08-25T15:39:52.053Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/identitytoolkit.googleapis.com x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-25T15:39:52.054Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-25T15:39:52.054Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-25T15:39:52.063Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseio.com [none]
+[debug] [2025-08-25T15:39:52.063Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseio.com x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-25T15:39:52.065Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-25T15:39:52.065Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-25T15:39:52.077Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasedataconnect.googleapis.com [none]
+[debug] [2025-08-25T15:39:52.077Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasedataconnect.googleapis.com x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-25T15:39:52.089Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-25T15:39:52.089Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-25T15:39:52.102Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseremoteconfig.googleapis.com [none]
+[debug] [2025-08-25T15:39:52.102Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseremoteconfig.googleapis.com x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-25T15:39:52.103Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-25T15:39:52.103Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-25T15:39:52.113Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasecrashlytics.googleapis.com [none]
+[debug] [2025-08-25T15:39:52.113Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasecrashlytics.googleapis.com x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-25T15:39:52.113Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-25T15:39:52.113Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-25T15:39:52.123Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/fcm.googleapis.com [none]
+[debug] [2025-08-25T15:39:52.123Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/fcm.googleapis.com x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-25T15:39:52.126Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-25T15:39:52.126Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-25T15:39:52.137Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/fcm.googleapis.com [none]
+[debug] [2025-08-25T15:39:52.137Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/fcm.googleapis.com x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-25T15:39:52.137Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-25T15:39:52.137Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-25T15:39:52.144Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/ [none]
+[debug] [2025-08-25T15:39:52.144Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/ x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-25T15:39:52.144Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-25T15:39:52.144Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-25T15:39:52.153Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/identitytoolkit.googleapis.com [none]
+[debug] [2025-08-25T15:39:52.153Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/identitytoolkit.googleapis.com x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-25T15:39:52.154Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-25T15:39:52.154Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-25T15:39:52.163Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/storage.googleapis.com [none]
+[debug] [2025-08-25T15:39:52.163Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/storage.googleapis.com x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-25T15:39:52.165Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-25T15:39:52.165Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-25T15:39:52.171Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseapphosting.googleapis.com [none]
+[debug] [2025-08-25T15:39:52.171Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseapphosting.googleapis.com x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-25T15:39:52.172Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-25T15:39:52.172Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-25T15:39:52.185Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasecrashlytics.googleapis.com [none]
+[debug] [2025-08-25T15:39:52.185Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasecrashlytics.googleapis.com x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-25T15:39:52.185Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-25T15:39:52.185Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-25T15:39:52.194Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseapphosting.googleapis.com [none]
+[debug] [2025-08-25T15:39:52.194Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseapphosting.googleapis.com x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-25T15:39:52.194Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-25T15:39:52.194Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-25T15:39:52.204Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasecrashlytics.googleapis.com [none]
+[debug] [2025-08-25T15:39:52.204Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasecrashlytics.googleapis.com x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-25T15:39:53.154Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseio.com 403
+[debug] [2025-08-25T15:39:53.154Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseio.com [omitted]
+[debug] [2025-08-25T15:39:53.197Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/fcm.googleapis.com 200
+[debug] [2025-08-25T15:39:53.198Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/fcm.googleapis.com [omitted]
+[debug] [2025-08-25T15:39:53.205Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseremoteconfig.googleapis.com 200
+[debug] [2025-08-25T15:39:53.205Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseremoteconfig.googleapis.com [omitted]
+[debug] [2025-08-25T15:39:53.215Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasedataconnect.googleapis.com 200
+[debug] [2025-08-25T15:39:53.215Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasedataconnect.googleapis.com [omitted]
+[debug] [2025-08-25T15:39:53.216Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasecrashlytics.googleapis.com 200
+[debug] [2025-08-25T15:39:53.216Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasecrashlytics.googleapis.com [omitted]
+[debug] [2025-08-25T15:39:53.217Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/identitytoolkit.googleapis.com 200
+[debug] [2025-08-25T15:39:53.217Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/identitytoolkit.googleapis.com [omitted]
+[debug] [2025-08-25T15:39:53.224Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseapphosting.googleapis.com 200
+[debug] [2025-08-25T15:39:53.224Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseapphosting.googleapis.com [omitted]
+[debug] [2025-08-25T15:39:53.227Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/storage.googleapis.com 200
+[debug] [2025-08-25T15:39:53.227Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/storage.googleapis.com [omitted]
+[debug] [2025-08-25T15:39:53.588Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/ 200
+[debug] [2025-08-25T15:39:53.588Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/ [omitted]
+[debug] [2025-08-25T15:39:54.272Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseio.com 403
+[debug] [2025-08-25T15:39:54.272Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseio.com [omitted]
+[debug] [2025-08-25T15:39:54.274Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseio.com 403
+[debug] [2025-08-25T15:39:54.274Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseio.com [omitted]
+[debug] [2025-08-25T15:39:54.295Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseremoteconfig.googleapis.com 200
+[debug] [2025-08-25T15:39:54.296Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseremoteconfig.googleapis.com [omitted]
+[debug] [2025-08-25T15:39:54.310Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/fcm.googleapis.com 200
+[debug] [2025-08-25T15:39:54.311Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/fcm.googleapis.com [omitted]
+[debug] [2025-08-25T15:39:54.327Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/identitytoolkit.googleapis.com 200
+[debug] [2025-08-25T15:39:54.327Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/identitytoolkit.googleapis.com [omitted]
+[debug] [2025-08-25T15:39:54.336Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasedataconnect.googleapis.com 200
+[debug] [2025-08-25T15:39:54.337Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasedataconnect.googleapis.com [omitted]
+[debug] [2025-08-25T15:39:54.339Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasedataconnect.googleapis.com 200
+[debug] [2025-08-25T15:39:54.339Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasedataconnect.googleapis.com [omitted]
+[debug] [2025-08-25T15:39:54.340Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasecrashlytics.googleapis.com 200
+[debug] [2025-08-25T15:39:54.340Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasecrashlytics.googleapis.com [omitted]
+[debug] [2025-08-25T15:39:54.340Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/fcm.googleapis.com 200
+[debug] [2025-08-25T15:39:54.340Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/fcm.googleapis.com [omitted]
+[debug] [2025-08-25T15:39:54.352Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/identitytoolkit.googleapis.com 200
+[debug] [2025-08-25T15:39:54.352Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/identitytoolkit.googleapis.com [omitted]
+[debug] [2025-08-25T15:39:54.358Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseapphosting.googleapis.com 200
+[debug] [2025-08-25T15:39:54.358Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseapphosting.googleapis.com [omitted]
+[debug] [2025-08-25T15:39:54.358Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseremoteconfig.googleapis.com 200
+[debug] [2025-08-25T15:39:54.359Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseremoteconfig.googleapis.com [omitted]
+[debug] [2025-08-25T15:39:54.364Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseapphosting.googleapis.com 200
+[debug] [2025-08-25T15:39:54.364Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseapphosting.googleapis.com [omitted]
+[debug] [2025-08-25T15:39:54.365Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasecrashlytics.googleapis.com 200
+[debug] [2025-08-25T15:39:54.365Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasecrashlytics.googleapis.com [omitted]
+[debug] [2025-08-25T15:39:54.365Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/storage.googleapis.com 200
+[debug] [2025-08-25T15:39:54.365Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/storage.googleapis.com [omitted]
+[debug] [2025-08-25T15:39:54.372Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/storage.googleapis.com 200
+[debug] [2025-08-25T15:39:54.373Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/storage.googleapis.com [omitted]
+[debug] [2025-08-25T15:39:54.385Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-08-25T15:39:54.385Z] > authorizing via signed-in user (rtianero@gmail.com)
+[debug] [2025-08-25T15:39:54.726Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-08-25T15:39:54.726Z] > authorizing via signed-in user (rtianero@gmail.com)
+[debug] [2025-08-25T15:39:54.964Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/ 200
+[debug] [2025-08-25T15:39:54.964Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/ [omitted]
+[debug] [2025-08-25T15:39:55.011Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/ 200
+[debug] [2025-08-25T15:39:55.011Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/ [omitted]
+[debug] [2025-08-26T11:55:00.885Z] Checked if tokens are valid: false, expires at: 1756139991194
+[debug] [2025-08-26T11:55:00.887Z] Checked if tokens are valid: false, expires at: 1756139991194
+[debug] [2025-08-26T11:55:00.887Z] > refreshing access token with scopes: []
+[debug] [2025-08-26T11:55:00.888Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-26T11:55:00.888Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T11:55:00.897Z] Checked if tokens are valid: false, expires at: 1756139991194
+[debug] [2025-08-26T11:55:00.897Z] Checked if tokens are valid: false, expires at: 1756139991194
+[debug] [2025-08-26T11:55:00.897Z] > refreshing access token with scopes: []
+[debug] [2025-08-26T11:55:00.897Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-26T11:55:00.898Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T11:55:00.898Z] Checked if tokens are valid: false, expires at: 1756139991194
+[debug] [2025-08-26T11:55:00.898Z] Checked if tokens are valid: false, expires at: 1756139991194
+[debug] [2025-08-26T11:55:00.898Z] > refreshing access token with scopes: []
+[debug] [2025-08-26T11:55:00.898Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-26T11:55:00.898Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T11:55:00.899Z] Checked if tokens are valid: false, expires at: 1756139991194
+[debug] [2025-08-26T11:55:00.899Z] Checked if tokens are valid: false, expires at: 1756139991194
+[debug] [2025-08-26T11:55:00.899Z] > refreshing access token with scopes: []
+[debug] [2025-08-26T11:55:00.899Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-26T11:55:00.899Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T11:55:00.899Z] Checked if tokens are valid: false, expires at: 1756139991194
+[debug] [2025-08-26T11:55:00.899Z] Checked if tokens are valid: false, expires at: 1756139991194
+[debug] [2025-08-26T11:55:00.899Z] > refreshing access token with scopes: []
+[debug] [2025-08-26T11:55:00.899Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-26T11:55:00.899Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T11:55:00.907Z] Checked if tokens are valid: false, expires at: 1756139991194
+[debug] [2025-08-26T11:55:00.907Z] Checked if tokens are valid: false, expires at: 1756139991194
+[debug] [2025-08-26T11:55:00.907Z] > refreshing access token with scopes: []
+[debug] [2025-08-26T11:55:00.907Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-26T11:55:00.907Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T11:55:00.907Z] Checked if tokens are valid: false, expires at: 1756139991194
+[debug] [2025-08-26T11:55:00.907Z] Checked if tokens are valid: false, expires at: 1756139991194
+[debug] [2025-08-26T11:55:00.907Z] > refreshing access token with scopes: []
+[debug] [2025-08-26T11:55:00.907Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-26T11:55:00.907Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T11:55:00.908Z] Checked if tokens are valid: false, expires at: 1756139991194
+[debug] [2025-08-26T11:55:00.908Z] Checked if tokens are valid: false, expires at: 1756139991194
+[debug] [2025-08-26T11:55:00.908Z] > refreshing access token with scopes: []
+[debug] [2025-08-26T11:55:00.908Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-26T11:55:00.908Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T11:55:00.908Z] Checked if tokens are valid: false, expires at: 1756139991194
+[debug] [2025-08-26T11:55:00.908Z] Checked if tokens are valid: false, expires at: 1756139991194
+[debug] [2025-08-26T11:55:00.908Z] > refreshing access token with scopes: []
+[debug] [2025-08-26T11:55:00.908Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-26T11:55:00.908Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T11:55:00.909Z] Checked if tokens are valid: false, expires at: 1756139991194
+[debug] [2025-08-26T11:55:00.909Z] Checked if tokens are valid: false, expires at: 1756139991194
+[debug] [2025-08-26T11:55:00.909Z] > refreshing access token with scopes: []
+[debug] [2025-08-26T11:55:00.909Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-26T11:55:00.909Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T11:55:00.909Z] Checked if tokens are valid: false, expires at: 1756139991194
+[debug] [2025-08-26T11:55:00.909Z] Checked if tokens are valid: false, expires at: 1756139991194
+[debug] [2025-08-26T11:55:00.909Z] > refreshing access token with scopes: []
+[debug] [2025-08-26T11:55:00.909Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-26T11:55:00.909Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T11:55:00.910Z] Checked if tokens are valid: false, expires at: 1756139991194
+[debug] [2025-08-26T11:55:00.910Z] Checked if tokens are valid: false, expires at: 1756139991194
+[debug] [2025-08-26T11:55:00.910Z] > refreshing access token with scopes: []
+[debug] [2025-08-26T11:55:00.910Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-26T11:55:00.910Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T11:55:00.910Z] Checked if tokens are valid: false, expires at: 1756139991194
+[debug] [2025-08-26T11:55:00.910Z] Checked if tokens are valid: false, expires at: 1756139991194
+[debug] [2025-08-26T11:55:00.910Z] > refreshing access token with scopes: []
+[debug] [2025-08-26T11:55:00.910Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-26T11:55:00.910Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T11:55:00.910Z] Checked if tokens are valid: false, expires at: 1756139991194
+[debug] [2025-08-26T11:55:00.910Z] Checked if tokens are valid: false, expires at: 1756139991194
+[debug] [2025-08-26T11:55:00.911Z] > refreshing access token with scopes: []
+[debug] [2025-08-26T11:55:00.911Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-26T11:55:00.911Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T11:55:00.911Z] Checked if tokens are valid: false, expires at: 1756139991194
+[debug] [2025-08-26T11:55:00.911Z] Checked if tokens are valid: false, expires at: 1756139991194
+[debug] [2025-08-26T11:55:00.911Z] > refreshing access token with scopes: []
+[debug] [2025-08-26T11:55:00.911Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-26T11:55:00.911Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T11:55:01.090Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-26T11:55:01.090Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T11:55:01.102Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseapphosting.googleapis.com [none]
+[debug] [2025-08-26T11:55:01.102Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseapphosting.googleapis.com x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-26T11:55:01.104Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-26T11:55:01.104Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T11:55:01.119Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseio.com [none]
+[debug] [2025-08-26T11:55:01.119Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseio.com x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-26T11:55:01.121Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-26T11:55:01.121Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T11:55:01.128Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasecrashlytics.googleapis.com [none]
+[debug] [2025-08-26T11:55:01.128Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasecrashlytics.googleapis.com x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-26T11:55:01.128Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-26T11:55:01.128Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T11:55:01.138Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/ [none]
+[debug] [2025-08-26T11:55:01.138Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/ x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-26T11:55:01.139Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-26T11:55:01.140Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T11:55:01.149Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasedataconnect.googleapis.com [none]
+[debug] [2025-08-26T11:55:01.149Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasedataconnect.googleapis.com x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-26T11:55:01.151Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-26T11:55:01.151Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T11:55:01.162Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseapphosting.googleapis.com [none]
+[debug] [2025-08-26T11:55:01.162Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseapphosting.googleapis.com x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-26T11:55:01.165Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-26T11:55:01.165Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T11:55:01.173Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasecrashlytics.googleapis.com [none]
+[debug] [2025-08-26T11:55:01.173Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasecrashlytics.googleapis.com x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-26T11:55:01.175Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-26T11:55:01.175Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T11:55:01.185Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasecrashlytics.googleapis.com [none]
+[debug] [2025-08-26T11:55:01.185Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasecrashlytics.googleapis.com x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-26T11:55:01.185Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-26T11:55:01.185Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T11:55:01.196Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseio.com [none]
+[debug] [2025-08-26T11:55:01.196Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseio.com x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-26T11:55:01.197Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-26T11:55:01.197Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T11:55:01.206Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/ [none]
+[debug] [2025-08-26T11:55:01.206Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/ x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-26T11:55:01.210Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-26T11:55:01.210Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T11:55:01.218Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseio.com [none]
+[debug] [2025-08-26T11:55:01.218Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseio.com x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-26T11:55:01.220Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-26T11:55:01.220Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T11:55:01.230Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseapphosting.googleapis.com [none]
+[debug] [2025-08-26T11:55:01.230Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseapphosting.googleapis.com x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-26T11:55:01.242Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-26T11:55:01.243Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T11:55:01.252Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasedataconnect.googleapis.com [none]
+[debug] [2025-08-26T11:55:01.252Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasedataconnect.googleapis.com x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-26T11:55:01.258Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-26T11:55:01.258Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T11:55:01.268Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/ [none]
+[debug] [2025-08-26T11:55:01.268Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/ x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-26T11:55:01.278Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-26T11:55:01.278Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T11:55:01.289Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasedataconnect.googleapis.com [none]
+[debug] [2025-08-26T11:55:01.289Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasedataconnect.googleapis.com x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-26T11:55:01.695Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseapphosting.googleapis.com 200
+[debug] [2025-08-26T11:55:01.695Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseapphosting.googleapis.com [omitted]
+[debug] [2025-08-26T11:55:02.267Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseio.com 403
+[debug] [2025-08-26T11:55:02.267Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseio.com [omitted]
+[debug] [2025-08-26T11:55:02.344Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasedataconnect.googleapis.com 200
+[debug] [2025-08-26T11:55:02.345Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasedataconnect.googleapis.com [omitted]
+[debug] [2025-08-26T11:55:02.394Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasecrashlytics.googleapis.com 200
+[debug] [2025-08-26T11:55:02.394Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasecrashlytics.googleapis.com [omitted]
+[debug] [2025-08-26T11:55:02.632Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/ 200
+[debug] [2025-08-26T11:55:02.632Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/ [omitted]
+[debug] [2025-08-26T11:55:02.830Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseapphosting.googleapis.com 200
+[debug] [2025-08-26T11:55:02.830Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseapphosting.googleapis.com [omitted]
+[debug] [2025-08-26T11:55:02.841Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseapphosting.googleapis.com 200
+[debug] [2025-08-26T11:55:02.841Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseapphosting.googleapis.com [omitted]
+[debug] [2025-08-26T11:55:03.328Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseio.com 403
+[debug] [2025-08-26T11:55:03.328Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseio.com [omitted]
+[debug] [2025-08-26T11:55:03.331Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseio.com 403
+[debug] [2025-08-26T11:55:03.331Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseio.com [omitted]
+[debug] [2025-08-26T11:55:03.458Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasedataconnect.googleapis.com 200
+[debug] [2025-08-26T11:55:03.458Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasedataconnect.googleapis.com [omitted]
+[debug] [2025-08-26T11:55:03.468Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasedataconnect.googleapis.com 200
+[debug] [2025-08-26T11:55:03.468Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasedataconnect.googleapis.com [omitted]
+[debug] [2025-08-26T11:55:03.491Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasecrashlytics.googleapis.com 200
+[debug] [2025-08-26T11:55:03.491Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasecrashlytics.googleapis.com [omitted]
+[debug] [2025-08-26T11:55:03.494Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-08-26T11:55:03.494Z] > authorizing via signed-in user (rtianero@gmail.com)
+[debug] [2025-08-26T11:55:03.498Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasecrashlytics.googleapis.com 200
+[debug] [2025-08-26T11:55:03.498Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasecrashlytics.googleapis.com [omitted]
+[debug] [2025-08-26T11:55:03.910Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-08-26T11:55:03.910Z] > authorizing via signed-in user (rtianero@gmail.com)
+[debug] [2025-08-26T11:55:04.085Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/ 200
+[debug] [2025-08-26T11:55:04.085Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/ [omitted]
+[debug] [2025-08-26T11:55:04.238Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/ 200
+[debug] [2025-08-26T11:55:04.238Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/ [omitted]
+[debug] [2025-08-26T14:58:07.621Z] Checked if tokens are valid: false, expires at: 1756212900279
+[debug] [2025-08-26T14:58:07.622Z] Checked if tokens are valid: false, expires at: 1756212900279
+[debug] [2025-08-26T14:58:07.622Z] > refreshing access token with scopes: []
+[debug] [2025-08-26T14:58:07.623Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-26T14:58:07.623Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T14:58:07.634Z] Checked if tokens are valid: false, expires at: 1756212900279
+[debug] [2025-08-26T14:58:07.634Z] Checked if tokens are valid: false, expires at: 1756212900279
+[debug] [2025-08-26T14:58:07.634Z] > refreshing access token with scopes: []
+[debug] [2025-08-26T14:58:07.634Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-26T14:58:07.634Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T14:58:07.635Z] Checked if tokens are valid: false, expires at: 1756212900279
+[debug] [2025-08-26T14:58:07.635Z] Checked if tokens are valid: false, expires at: 1756212900279
+[debug] [2025-08-26T14:58:07.635Z] > refreshing access token with scopes: []
+[debug] [2025-08-26T14:58:07.635Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-26T14:58:07.635Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T14:58:07.636Z] Checked if tokens are valid: false, expires at: 1756212900279
+[debug] [2025-08-26T14:58:07.636Z] Checked if tokens are valid: false, expires at: 1756212900279
+[debug] [2025-08-26T14:58:07.636Z] > refreshing access token with scopes: []
+[debug] [2025-08-26T14:58:07.636Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-26T14:58:07.636Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T14:58:07.636Z] Checked if tokens are valid: false, expires at: 1756212900279
+[debug] [2025-08-26T14:58:07.636Z] Checked if tokens are valid: false, expires at: 1756212900279
+[debug] [2025-08-26T14:58:07.636Z] > refreshing access token with scopes: []
+[debug] [2025-08-26T14:58:07.636Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-26T14:58:07.636Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T14:58:07.643Z] Checked if tokens are valid: false, expires at: 1756212900279
+[debug] [2025-08-26T14:58:07.643Z] Checked if tokens are valid: false, expires at: 1756212900279
+[debug] [2025-08-26T14:58:07.643Z] > refreshing access token with scopes: []
+[debug] [2025-08-26T14:58:07.643Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-26T14:58:07.643Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T14:58:07.643Z] Checked if tokens are valid: false, expires at: 1756212900279
+[debug] [2025-08-26T14:58:07.643Z] Checked if tokens are valid: false, expires at: 1756212900279
+[debug] [2025-08-26T14:58:07.643Z] > refreshing access token with scopes: []
+[debug] [2025-08-26T14:58:07.643Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-26T14:58:07.643Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T14:58:07.644Z] Checked if tokens are valid: false, expires at: 1756212900279
+[debug] [2025-08-26T14:58:07.644Z] Checked if tokens are valid: false, expires at: 1756212900279
+[debug] [2025-08-26T14:58:07.644Z] > refreshing access token with scopes: []
+[debug] [2025-08-26T14:58:07.644Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-26T14:58:07.644Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T14:58:07.644Z] Checked if tokens are valid: false, expires at: 1756212900279
+[debug] [2025-08-26T14:58:07.644Z] Checked if tokens are valid: false, expires at: 1756212900279
+[debug] [2025-08-26T14:58:07.644Z] > refreshing access token with scopes: []
+[debug] [2025-08-26T14:58:07.644Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-26T14:58:07.644Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T14:58:07.645Z] Checked if tokens are valid: false, expires at: 1756212900279
+[debug] [2025-08-26T14:58:07.645Z] Checked if tokens are valid: false, expires at: 1756212900279
+[debug] [2025-08-26T14:58:07.645Z] > refreshing access token with scopes: []
+[debug] [2025-08-26T14:58:07.645Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-26T14:58:07.645Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T14:58:07.645Z] Checked if tokens are valid: false, expires at: 1756212900279
+[debug] [2025-08-26T14:58:07.645Z] Checked if tokens are valid: false, expires at: 1756212900279
+[debug] [2025-08-26T14:58:07.645Z] > refreshing access token with scopes: []
+[debug] [2025-08-26T14:58:07.645Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-26T14:58:07.645Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T14:58:07.646Z] Checked if tokens are valid: false, expires at: 1756212900279
+[debug] [2025-08-26T14:58:07.646Z] Checked if tokens are valid: false, expires at: 1756212900279
+[debug] [2025-08-26T14:58:07.646Z] > refreshing access token with scopes: []
+[debug] [2025-08-26T14:58:07.646Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-26T14:58:07.646Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T14:58:07.647Z] Checked if tokens are valid: false, expires at: 1756212900279
+[debug] [2025-08-26T14:58:07.647Z] Checked if tokens are valid: false, expires at: 1756212900279
+[debug] [2025-08-26T14:58:07.647Z] > refreshing access token with scopes: []
+[debug] [2025-08-26T14:58:07.647Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-26T14:58:07.647Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T14:58:07.648Z] Checked if tokens are valid: false, expires at: 1756212900279
+[debug] [2025-08-26T14:58:07.648Z] Checked if tokens are valid: false, expires at: 1756212900279
+[debug] [2025-08-26T14:58:07.648Z] > refreshing access token with scopes: []
+[debug] [2025-08-26T14:58:07.648Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-26T14:58:07.648Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T14:58:07.648Z] Checked if tokens are valid: false, expires at: 1756212900279
+[debug] [2025-08-26T14:58:07.648Z] Checked if tokens are valid: false, expires at: 1756212900279
+[debug] [2025-08-26T14:58:07.648Z] > refreshing access token with scopes: []
+[debug] [2025-08-26T14:58:07.648Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-26T14:58:07.648Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T14:58:07.787Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-26T14:58:07.787Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T14:58:07.805Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseapphosting.googleapis.com [none]
+[debug] [2025-08-26T14:58:07.805Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseapphosting.googleapis.com x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-26T14:58:07.809Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-26T14:58:07.809Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T14:58:07.823Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseapphosting.googleapis.com [none]
+[debug] [2025-08-26T14:58:07.823Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseapphosting.googleapis.com x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-26T14:58:07.824Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-26T14:58:07.824Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T14:58:07.835Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseio.com [none]
+[debug] [2025-08-26T14:58:07.835Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseio.com x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-26T14:58:07.836Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-26T14:58:07.836Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T14:58:07.845Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/ [none]
+[debug] [2025-08-26T14:58:07.846Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/ x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-26T14:58:07.846Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-26T14:58:07.846Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T14:58:07.856Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasecrashlytics.googleapis.com [none]
+[debug] [2025-08-26T14:58:07.856Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasecrashlytics.googleapis.com x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-26T14:58:07.858Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-26T14:58:07.858Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T14:58:07.869Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasecrashlytics.googleapis.com [none]
+[debug] [2025-08-26T14:58:07.869Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasecrashlytics.googleapis.com x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-26T14:58:07.870Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-26T14:58:07.870Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T14:58:07.880Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseio.com [none]
+[debug] [2025-08-26T14:58:07.880Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseio.com x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-26T14:58:07.881Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-26T14:58:07.881Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T14:58:07.890Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasedataconnect.googleapis.com [none]
+[debug] [2025-08-26T14:58:07.890Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasedataconnect.googleapis.com x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-26T14:58:07.891Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-26T14:58:07.891Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T14:58:07.901Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/ [none]
+[debug] [2025-08-26T14:58:07.901Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/ x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-26T14:58:07.902Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-26T14:58:07.902Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T14:58:07.913Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasedataconnect.googleapis.com [none]
+[debug] [2025-08-26T14:58:07.913Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasedataconnect.googleapis.com x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-26T14:58:07.916Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-26T14:58:07.916Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T14:58:07.927Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/ [none]
+[debug] [2025-08-26T14:58:07.927Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/ x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-26T14:58:07.928Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-26T14:58:07.928Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T14:58:07.938Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasedataconnect.googleapis.com [none]
+[debug] [2025-08-26T14:58:07.938Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasedataconnect.googleapis.com x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-26T14:58:07.938Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-26T14:58:07.938Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T14:58:07.949Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasecrashlytics.googleapis.com [none]
+[debug] [2025-08-26T14:58:07.949Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasecrashlytics.googleapis.com x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-26T14:58:07.949Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-26T14:58:07.949Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T14:58:07.959Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseapphosting.googleapis.com [none]
+[debug] [2025-08-26T14:58:07.959Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseapphosting.googleapis.com x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-26T14:58:07.963Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-26T14:58:07.963Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-26T14:58:07.973Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseio.com [none]
+[debug] [2025-08-26T14:58:07.973Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseio.com x-goog-quota-user=projects/mapsncars
+[debug] [2025-08-26T14:58:08.290Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseapphosting.googleapis.com 200
+[debug] [2025-08-26T14:58:08.290Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseapphosting.googleapis.com [omitted]
+[debug] [2025-08-26T14:58:08.777Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/ 200
+[debug] [2025-08-26T14:58:08.777Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/ [omitted]
+[debug] [2025-08-26T14:58:08.983Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseio.com 403
+[debug] [2025-08-26T14:58:08.983Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseio.com [omitted]
+[debug] [2025-08-26T14:58:09.037Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseapphosting.googleapis.com 200
+[debug] [2025-08-26T14:58:09.037Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseapphosting.googleapis.com [omitted]
+[debug] [2025-08-26T14:58:09.037Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseio.com 403
+[debug] [2025-08-26T14:58:09.037Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseio.com [omitted]
+[debug] [2025-08-26T14:58:09.038Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseapphosting.googleapis.com 200
+[debug] [2025-08-26T14:58:09.038Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseapphosting.googleapis.com [omitted]
+[debug] [2025-08-26T14:58:09.049Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/ 200
+[debug] [2025-08-26T14:58:09.049Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/ [omitted]
+[debug] [2025-08-26T14:58:09.073Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseio.com 403
+[debug] [2025-08-26T14:58:09.073Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebaseio.com [omitted]
+[debug] [2025-08-26T14:58:09.078Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasedataconnect.googleapis.com 200
+[debug] [2025-08-26T14:58:09.078Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasedataconnect.googleapis.com [omitted]
+[debug] [2025-08-26T14:58:09.082Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasecrashlytics.googleapis.com 200
+[debug] [2025-08-26T14:58:09.082Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasecrashlytics.googleapis.com [omitted]
+[debug] [2025-08-26T14:58:09.089Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasedataconnect.googleapis.com 200
+[debug] [2025-08-26T14:58:09.089Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasedataconnect.googleapis.com [omitted]
+[debug] [2025-08-26T14:58:09.094Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasecrashlytics.googleapis.com 200
+[debug] [2025-08-26T14:58:09.094Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasecrashlytics.googleapis.com [omitted]
+[debug] [2025-08-26T14:58:09.106Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasecrashlytics.googleapis.com 200
+[debug] [2025-08-26T14:58:09.106Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasecrashlytics.googleapis.com [omitted]
+[debug] [2025-08-26T14:58:09.126Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasedataconnect.googleapis.com 200
+[debug] [2025-08-26T14:58:09.126Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/firebasedataconnect.googleapis.com [omitted]
+[debug] [2025-08-26T14:58:09.129Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-08-26T14:58:09.129Z] > authorizing via signed-in user (rtianero@gmail.com)
+[debug] [2025-08-26T14:58:09.544Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/ 200
+[debug] [2025-08-26T14:58:09.545Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/mapsncars/services/ [omitted]
+[debug] [2025-08-26T14:58:09.545Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-08-26T14:58:09.545Z] > authorizing via signed-in user (rtianero@gmail.com)
