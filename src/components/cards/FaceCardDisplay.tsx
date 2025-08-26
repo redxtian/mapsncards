@@ -146,31 +146,67 @@ function FaceCard({ item, onDelete, density, isSelected, onSelect }: {
   return (
     <motion.div
       layout
-      className={`group relative flex h-full flex-col rounded-3xl border transition-all hover:shadow-md ${
+      className={`group relative flex h-full flex-col rounded-3xl border backdrop-blur-md transition-all duration-300 overflow-hidden ${
         isSelected 
-          ? "border-blue-500 bg-blue-50 shadow-md" 
-          : "border-zinc-200 bg-white shadow-sm"
+          ? "border-blue-400/30 bg-gradient-to-br from-blue-50/80 via-blue-50/60 to-blue-100/40 shadow-xl shadow-blue-500/10" 
+          : "border-white/20 bg-gradient-to-br from-white/90 via-white/80 to-gray-50/60 shadow-lg shadow-black/5 hover:shadow-xl hover:shadow-black/10"
       } ${densityConfig.cardSize}`}
-      whileHover={{ y: -2 }}
+      whileHover={{ 
+        y: -4,
+        scale: 1.02,
+        transition: { type: "spring", stiffness: 400, damping: 25 }
+      }}
+      whileTap={{ scale: 0.98 }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, type: "spring" }}
     >
+      {/* Glass shine effect overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+      
+      {/* Floating particles effect on hover */}
+      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+        <div className="absolute top-4 right-4 w-1 h-1 bg-white/60 rounded-full animate-pulse" />
+        <div className="absolute top-6 right-8 w-0.5 h-0.5 bg-blue-200/80 rounded-full animate-pulse delay-300" />
+        <div className="absolute top-8 right-6 w-0.5 h-0.5 bg-white/40 rounded-full animate-pulse delay-700" />
+      </div>
       {/* Header */}
-      <div className="mb-3 flex items-start justify-between gap-2">
+      <div className="relative mb-3 flex items-start justify-between gap-2">
         <div className="flex-1">
           <div className="flex items-start gap-3">
             {onSelect && (
-              <button
+              <motion.button
                 onClick={() => onSelect(item.id)}
                 className="mt-1 text-zinc-400 hover:text-zinc-600 transition-colors"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
               >
-                {isSelected ? <CheckSquare className="h-4 w-4" /> : <Square className="h-4 w-4" />}
-              </button>
+                <motion.div
+                  initial={false}
+                  animate={isSelected ? { scale: [1, 1.2, 1], rotate: [0, 5, 0] } : { scale: 1 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {isSelected ? <CheckSquare className="h-4 w-4 text-blue-600" /> : <Square className="h-4 w-4" />}
+                </motion.div>
+              </motion.button>
             )}
             <div className="flex-1">
-              <h3 className="font-semibold text-zinc-900">{item.name}</h3>
+              <motion.h3 
+                className="font-semibold text-zinc-900 group-hover:text-zinc-800 transition-colors duration-300"
+                layoutId={`card-title-${item.id}`}
+              >
+                {item.name}
+              </motion.h3>
               <div className="mt-1 flex items-center gap-2">
-                <Badge className={leverageColors[item.leverage]}>{item.leverage}</Badge>
-                <Badge className="bg-zinc-100 text-zinc-700">{item.intent}</Badge>
-                <Badge className="bg-zinc-100 text-zinc-700">{item.tier}</Badge>
+                <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 400 }}>
+                  <Badge className={`${leverageColors[item.leverage]} backdrop-blur-sm border border-white/20`}>{item.leverage}</Badge>
+                </motion.div>
+                <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 400, delay: 0.05 }}>
+                  <Badge className="bg-white/60 text-zinc-700 backdrop-blur-sm border border-white/30">{item.intent}</Badge>
+                </motion.div>
+                <motion.div whileHover={{ scale: 1.05 }} transition={{ type: "spring", stiffness: 400, delay: 0.1 }}>
+                  <Badge className="bg-gradient-to-r from-zinc-100/80 to-zinc-200/60 text-zinc-800 backdrop-blur-sm border border-white/20">{item.tier}</Badge>
+                </motion.div>
               </div>
             </div>
           </div>
@@ -178,29 +214,53 @@ function FaceCard({ item, onDelete, density, isSelected, onSelect }: {
       </div>
 
       {/* Summary */}
-      <div className="mb-3">
+      <div className="relative mb-3">
         <FieldLabel>Summary</FieldLabel>
-        <p className="mt-1 text-sm text-zinc-800">{item.summary}</p>
+        <motion.div 
+          className="mt-1 rounded-2xl bg-white/40 backdrop-blur-sm border border-white/30 p-3 shadow-inner"
+          whileHover={{ 
+            background: "rgba(255, 255, 255, 0.6)",
+            transition: { duration: 0.3 }
+          }}
+        >
+          <p className="text-sm text-zinc-800 leading-relaxed">{item.summary}</p>
+        </motion.div>
       </div>
 
       {/* Mode Toggle */}
       <div className="mb-2 flex items-center gap-2">
         <FieldLabel>Mode</FieldLabel>
         <div className="ml-auto"></div>
-        <div className="grid grid-cols-2 rounded-2xl border border-zinc-300 p-1">
-          <button
-            className={`rounded-xl px-3 py-1 text-sm font-medium ${mode === "direct" ? "bg-zinc-900 text-white" : "text-zinc-700 hover:bg-zinc-100"}`}
+        <motion.div 
+          className="grid grid-cols-2 rounded-2xl border border-white/30 bg-white/20 backdrop-blur-sm p-1 shadow-inner"
+          whileHover={{ scale: 1.02 }}
+          transition={{ type: "spring", stiffness: 400 }}
+        >
+          <motion.button
+            className={`rounded-xl px-3 py-1 text-sm font-medium transition-all duration-300 ${
+              mode === "direct" 
+                ? "bg-gradient-to-r from-zinc-900 to-zinc-800 text-white shadow-lg" 
+                : "text-zinc-700 hover:bg-white/40 backdrop-blur-sm"
+            }`}
             onClick={() => { setMode("direct"); setLineIdx(0); }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.98 }}
           >
             Direct
-          </button>
-          <button
-            className={`rounded-xl px-3 py-1 text-sm font-medium ${mode === "inception" ? "bg-zinc-900 text-white" : "text-zinc-700 hover:bg-zinc-100"}`}
+          </motion.button>
+          <motion.button
+            className={`rounded-xl px-3 py-1 text-sm font-medium transition-all duration-300 ${
+              mode === "inception" 
+                ? "bg-gradient-to-r from-zinc-900 to-zinc-800 text-white shadow-lg" 
+                : "text-zinc-700 hover:bg-white/40 backdrop-blur-sm"
+            }`}
             onClick={() => { setMode("inception"); setLineIdx(0); }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.98 }}
           >
             Inception
-          </button>
-        </div>
+          </motion.button>
+        </motion.div>
       </div>
 
       {/* Phrase */}
@@ -211,13 +271,17 @@ function FaceCard({ item, onDelete, density, isSelected, onSelect }: {
             <AnimatePresence mode="wait" initial={false}>
               <motion.div
                 key={mode + ":" + lineIdx}
-                initial={{ rotateX: 90, opacity: 0 }}
-                animate={{ rotateX: 0, opacity: 1 }}
-                exit={{ rotateX: -90, opacity: 0 }}
-                transition={{ duration: 0.18 }}
-                className="rounded-2xl border border-zinc-200 bg-zinc-50 p-3 text-zinc-900"
+                initial={{ rotateX: 90, opacity: 0, scale: 0.95 }}
+                animate={{ rotateX: 0, opacity: 1, scale: 1 }}
+                exit={{ rotateX: -90, opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.25, type: "spring" }}
+                className="rounded-2xl border border-white/30 bg-gradient-to-br from-white/60 via-white/40 to-zinc-50/30 backdrop-blur-sm p-3 text-zinc-900 shadow-inner relative overflow-hidden"
               >
-                {phrase || <span className="text-zinc-400">No phrase</span>}
+                {/* Glass reflection effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-transparent opacity-50" />
+                <div className="relative">
+                  {phrase || <span className="text-zinc-400">No phrase</span>}
+                </div>
               </motion.div>
             </AnimatePresence>
             <div className="mt-2 flex items-center justify-between">
@@ -231,12 +295,26 @@ function FaceCard({ item, onDelete, density, isSelected, onSelect }: {
               </div>
               {phrases.length > 1 && (
                 <div className="flex items-center gap-2">
-                  <Button variant="outline" onClick={() => cycle(-1)} ariaLabel="Previous phrase">
-                    <RefreshCw className="h-4 w-4 -scale-x-100" /> Prev
-                  </Button>
-                  <Button variant="outline" onClick={() => cycle(1)} ariaLabel="Next phrase">
-                    Next <RefreshCw className="h-4 w-4" />
-                  </Button>
+                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                    <Button 
+                      variant="outline" 
+                      onClick={() => cycle(-1)} 
+                      ariaLabel="Previous phrase"
+                      className="bg-white/60 backdrop-blur-sm border-white/40 hover:bg-white/80 transition-all duration-300 shadow-sm"
+                    >
+                      <RefreshCw className="h-4 w-4 -scale-x-100" /> Prev
+                    </Button>
+                  </motion.div>
+                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                    <Button 
+                      variant="outline" 
+                      onClick={() => cycle(1)} 
+                      ariaLabel="Next phrase"
+                      className="bg-white/60 backdrop-blur-sm border-white/40 hover:bg-white/80 transition-all duration-300 shadow-sm"
+                    >
+                      Next <RefreshCw className="h-4 w-4" />
+                    </Button>
+                  </motion.div>
                 </div>
               )}
             </div>
@@ -249,12 +327,27 @@ function FaceCard({ item, onDelete, density, isSelected, onSelect }: {
         <FieldLabel>Steps</FieldLabel>
         <ol className="mt-1 space-y-2">
           {item.steps.map((step, i) => (
-            <li key={i} className="flex items-start gap-2">
-              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-zinc-900 text-xs font-medium text-white">
+            <motion.li 
+              key={i} 
+              className="flex items-start gap-3 rounded-2xl bg-white/30 backdrop-blur-sm border border-white/20 p-3 shadow-sm"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.3, delay: i * 0.1 }}
+              whileHover={{ 
+                scale: 1.02, 
+                backgroundColor: "rgba(255, 255, 255, 0.5)",
+                transition: { duration: 0.2 }
+              }}
+            >
+              <motion.span 
+                className="flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-zinc-900 to-zinc-700 text-xs font-bold text-white shadow-lg"
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                transition={{ type: "spring", stiffness: 400 }}
+              >
                 {i + 1}
-              </span>
-              <span className="text-sm text-zinc-800">{step}</span>
-            </li>
+              </motion.span>
+              <span className="text-sm text-zinc-800 leading-relaxed">{step}</span>
+            </motion.li>
           ))}
         </ol>
       </div>
@@ -262,21 +355,41 @@ function FaceCard({ item, onDelete, density, isSelected, onSelect }: {
       {/* Recovery */}
       <div className="mb-4">
         <FieldLabel>Recovery</FieldLabel>
-        <div className="mt-1 rounded-2xl border border-zinc-200 bg-white p-3 text-sm text-zinc-800">
-          {item.recovery}
-        </div>
+        <motion.div 
+          className="mt-1 rounded-2xl border border-white/30 bg-gradient-to-br from-amber-50/60 via-white/50 to-orange-50/40 backdrop-blur-sm p-3 text-sm text-zinc-800 shadow-inner relative overflow-hidden"
+          whileHover={{ 
+            background: "linear-gradient(to bottom right, rgba(255, 251, 235, 0.8), rgba(255, 255, 255, 0.7), rgba(255, 247, 237, 0.6))",
+            transition: { duration: 0.3 }
+          }}
+        >
+          {/* Subtle glow effect */}
+          <div className="absolute inset-0 bg-gradient-to-br from-amber-200/10 via-transparent to-orange-200/10 opacity-50" />
+          <div className="relative">
+            {item.recovery}
+          </div>
+        </motion.div>
       </div>
 
       {/* Footer */}
-      <div className="mt-auto flex items-center justify-end">
-        <Button 
-          variant="ghost" 
-          onClick={() => onDelete?.(item)}
-          ariaLabel="Delete card"
-          className="text-red-600 hover:text-red-700 hover:bg-red-50"
-        >
-          <Trash2 className="h-4 w-4" />
-        </Button>
+      <div className="mt-auto flex items-center justify-end relative">
+        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+          <Button 
+            variant="ghost" 
+            onClick={() => onDelete?.(item)}
+            ariaLabel="Delete card"
+            className="text-red-600 hover:text-red-700 hover:bg-red-50/80 backdrop-blur-sm border border-transparent hover:border-red-200/50 transition-all duration-300 shadow-sm hover:shadow-md"
+          >
+            <motion.div
+              whileHover={{ rotate: 10, scale: 1.1 }}
+              transition={{ type: "spring", stiffness: 400 }}
+            >
+              <Trash2 className="h-4 w-4" />
+            </motion.div>
+          </Button>
+        </motion.div>
+        
+        {/* Floating action indicator */}
+        <div className="absolute -top-1 -right-1 w-2 h-2 bg-gradient-to-br from-red-400 to-red-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse" />
       </div>
     </motion.div>
   );
@@ -565,67 +678,133 @@ export default function FaceCardDisplay() {
   }
 
   return (
-    <div className="mx-auto max-w-7xl p-6">
+    <div className="mx-auto max-w-7xl p-6 relative">
+      {/* Background glass effect */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 via-white/10 to-purple-50/20 backdrop-blur-3xl -z-10 rounded-3xl" />
       {/* Header */}
-      <div className="mb-6 flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold text-gray-900">Card Library</h1>
-          <p className="text-gray-600">Browse and use your negotiation cards</p>
+      <motion.div 
+        className="mb-6 flex items-center justify-between relative"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, type: "spring" }}
+      >
+        <div className="relative">
+          <motion.h1 
+            className="text-3xl font-bold bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent"
+            layoutId="page-title"
+          >
+            Card Library
+          </motion.h1>
+          <motion.p 
+            className="text-gray-600"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.4 }}
+          >
+            Browse and use your negotiation cards
+          </motion.p>
+          {/* Decorative glass orb */}
+          <div className="absolute -top-2 -right-4 w-8 h-8 bg-gradient-to-br from-blue-200/40 to-purple-200/40 rounded-full backdrop-blur-sm opacity-60" />
         </div>
-        <Button asChild>
-          <Link href="/cards/input">
-            <Plus className="h-4 w-4 mr-2" />
-            Add Cards
-          </Link>
-        </Button>
-      </div>
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.3, duration: 0.4, type: "spring" }}
+        >
+          <Button asChild className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 shadow-lg hover:shadow-xl transition-all duration-300 backdrop-blur-sm">
+            <Link href="/cards/input">
+              <motion.div
+                whileHover={{ rotate: 180 }}
+                transition={{ duration: 0.3 }}
+              >
+                <Plus className="h-4 w-4 mr-2" />
+              </motion.div>
+              Add Cards
+            </Link>
+          </Button>
+        </motion.div>
+      </motion.div>
 
       {/* Filter Presets */}
-      <div className="mb-4 flex flex-wrap gap-2">
-        <span className="text-sm font-medium text-zinc-700">Quick filters:</span>
-        {FILTER_PRESETS.map((preset) => (
-          <button
+      <motion.div 
+        className="mb-4 flex flex-wrap gap-2"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4, duration: 0.4 }}
+      >
+        <span className="text-sm font-medium text-zinc-700 bg-white/60 backdrop-blur-sm px-2 py-1 rounded-full border border-white/30">Quick filters:</span>
+        {FILTER_PRESETS.map((preset, index) => (
+          <motion.button
             key={preset.name}
             onClick={() => applyPreset(preset)}
-            className="flex items-center gap-2 rounded-full border border-zinc-200 bg-white px-3 py-1.5 text-sm font-medium text-zinc-700 hover:bg-zinc-50 hover:border-zinc-300 transition-colors"
+            className="flex items-center gap-2 rounded-full border border-white/30 bg-white/60 backdrop-blur-sm px-3 py-1.5 text-sm font-medium text-zinc-700 hover:bg-white/80 hover:border-white/50 transition-all duration-300 shadow-sm hover:shadow-md"
+            whileHover={{ scale: 1.05, y: -1 }}
+            whileTap={{ scale: 0.98 }}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 + index * 0.1, duration: 0.3 }}
           >
-            {preset.icon}
+            <motion.div
+              whileHover={{ scale: 1.2, rotate: 10 }}
+              transition={{ duration: 0.2 }}
+            >
+              {preset.icon}
+            </motion.div>
             {preset.name}
-          </button>
+          </motion.button>
         ))}
-      </div>
+      </motion.div>
 
       {/* Active Filters */}
-      {activeFilters.length > 0 && (
-        <div className="mb-4 flex flex-wrap gap-2">
-          <span className="text-sm font-medium text-zinc-700">Active filters:</span>
-          {activeFilters.map((filter) => (
-            <div
-              key={`${filter.type}-${filter.value}`}
-              className="flex items-center gap-1 rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-800"
-            >
-              {filter.label}
-              <button
-                onClick={() => removeFilter(filter)}
-                className="ml-1 text-blue-600 hover:text-blue-800"
-              >
-                <X className="h-3 w-3" />
-              </button>
-            </div>
-          ))}
-          <button
-            onClick={() => {
-              setQuery("");
-              setLev("All");
-              setIntent("All");
-              setTier("All");
-            }}
-            className="text-sm text-zinc-500 hover:text-zinc-700 underline"
+      <AnimatePresence>
+        {activeFilters.length > 0 && (
+          <motion.div 
+            className="mb-4 flex flex-wrap gap-2"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
           >
-            Clear all
-          </button>
-        </div>
-      )}
+            <span className="text-sm font-medium text-zinc-700 bg-white/60 backdrop-blur-sm px-2 py-1 rounded-full border border-white/30">Active filters:</span>
+            {activeFilters.map((filter, index) => (
+              <motion.div
+                key={`${filter.type}-${filter.value}`}
+                className="flex items-center gap-1 rounded-full bg-gradient-to-r from-blue-100/80 to-blue-200/60 backdrop-blur-sm border border-blue-200/40 px-3 py-1 text-sm font-medium text-blue-800 shadow-sm"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                transition={{ delay: index * 0.05 }}
+                whileHover={{ scale: 1.05 }}
+              >
+                {filter.label}
+                <motion.button
+                  onClick={() => removeFilter(filter)}
+                  className="ml-1 text-blue-600 hover:text-blue-800"
+                  whileHover={{ scale: 1.2, rotate: 90 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <X className="h-3 w-3" />
+                </motion.button>
+              </motion.div>
+            ))}
+            <motion.button
+              onClick={() => {
+                setQuery("");
+                setLev("All");
+                setIntent("All");
+                setTier("All");
+              }}
+              className="text-sm text-zinc-500 hover:text-zinc-700 underline bg-white/40 backdrop-blur-sm px-2 py-1 rounded-full border border-white/20 hover:bg-white/60 transition-all duration-200"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Clear all
+            </motion.button>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Layout Controls */}
       <div className="mb-4 flex flex-wrap items-center justify-between gap-4">
@@ -800,18 +979,38 @@ export default function FaceCardDisplay() {
       </div>
 
       {/* Grid */}
-      <div className={`grid ${GRID_DENSITY_CONFIG[gridDensity].cols} ${GRID_DENSITY_CONFIG[gridDensity].gap}`}>
-        {filteredAndSorted.map((c) => (
-          <FaceCard 
-            key={c.id} 
-            item={c} 
-            onDelete={handleDelete}
-            density={gridDensity}
-            isSelected={selectedCards.has(c.id)}
-            onSelect={bulkMode ? toggleCardSelection : undefined}
-          />
-        ))}
-      </div>
+      <motion.div 
+        className={`grid ${GRID_DENSITY_CONFIG[gridDensity].cols} ${GRID_DENSITY_CONFIG[gridDensity].gap}`}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.6, duration: 0.6 }}
+      >
+        <AnimatePresence>
+          {filteredAndSorted.map((c, index) => (
+            <motion.div
+              key={c.id}
+              layout
+              initial={{ opacity: 0, y: 50, scale: 0.9 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -50, scale: 0.9 }}
+              transition={{ 
+                delay: index * 0.05, 
+                duration: 0.4, 
+                type: "spring",
+                stiffness: 100 
+              }}
+            >
+              <FaceCard 
+                item={c} 
+                onDelete={handleDelete}
+                density={gridDensity}
+                isSelected={selectedCards.has(c.id)}
+                onSelect={bulkMode ? toggleCardSelection : undefined}
+              />
+            </motion.div>
+          ))}
+        </AnimatePresence>
+      </motion.div>
 
       {/* Delete Confirmation Dialog */}
       {deleteConfirm && (
