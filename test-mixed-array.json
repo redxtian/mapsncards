@@ -1,0 +1,67 @@
+[
+  {
+    "id": "valid_card_1",
+    "name": "Valid Test Card 1",
+    "summary": "This is a valid card with all required fields",
+    "tier": "L1",
+    "leverage": "Informational",
+    "intent": "Extract",
+    "modes": {
+      "direct": ["Direct approach 1", "Direct approach 2"],
+      "inception": ["Subtle approach 1", "Subtle approach 2"]
+    },
+    "steps": [
+      "First step",
+      "Second step", 
+      "Third step"
+    ],
+    "recovery": "Recovery strategy when things go wrong",
+    "telemetry_keys": ["key1", "key2"],
+    "version": "1.0.0",
+    "status": "beta",
+    "author": "test-author"
+  },
+  {
+    "id": "invalid_card_missing_fields",
+    "name": "Invalid Card - Missing Required Fields"
+  },
+  {
+    "id": "valid_card_2", 
+    "name": "Another Valid Card",
+    "summary": "Second valid card in the mixed array",
+    "tier": "L1",
+    "leverage": "Resource",
+    "intent": "Increase",
+    "modes": {
+      "direct": ["Resource approach 1"],
+      "inception": ["Indirect resource approach"]
+    },
+    "steps": ["Step 1", "Step 2"],
+    "recovery": "Resource recovery plan",
+    "telemetry_keys": ["resource_key"],
+    "version": "1.0.1",
+    "status": "stable"
+  },
+  {
+    "invalid": "completely wrong structure",
+    "not_a_card": true
+  },
+  null,
+  {
+    "id": "invalid_enum_values",
+    "name": "Invalid Enum Card", 
+    "summary": "Card with invalid enum values",
+    "tier": "WRONG_TIER",
+    "leverage": "INVALID_LEVERAGE",
+    "intent": "WRONG_INTENT",
+    "modes": {
+      "direct": "not_an_array",
+      "inception": ["inception approach"]
+    },
+    "steps": "not_an_array_either",
+    "recovery": "Recovery plan",
+    "telemetry_keys": ["key"],
+    "version": "1.0.0",
+    "status": "invalid_status"
+  }
+]
