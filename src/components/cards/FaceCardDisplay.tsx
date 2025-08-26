@@ -2,13 +2,41 @@
 
 import React, { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Filter, Search, Plus, Upload, Trash2 } from "lucide-react";
+import { Filter, RefreshCw, Search, Plus, Upload, Trash2, X, Star, Clock, TrendingUp } from "lucide-react";
 import Link from "next/link";
 import { cardOperations, CardItem } from "@/lib/firebase";
 
 // ————————————————————————————————————————————————
 // Small UI helpers (Tailwind only)
 // ————————————————————————————————————————————————
+
+type FilterPreset = {
+  name: string;
+  icon: React.ReactNode;
+  filters: {
+    leverage?: CardItem["leverage"] | "All";
+    intent?: CardItem["intent"] | "All";
+    tier?: CardItem["tier"] | "All";
+  };
+};
+
+const FILTER_PRESETS: FilterPreset[] = [
+  {
+    name: "Popular Leverage",
+    icon: <Star className="h-3 w-3" />,
+    filters: { leverage: "Informational" }
+  },
+  {
+    name: "Recent Cards",
+    icon: <Clock className="h-3 w-3" />,
+    filters: {} // Will be handled by sorting
+  },
+  {
+    name: "High Impact",
+    icon: <TrendingUp className="h-3 w-3" />,
+    filters: { tier: "L1" }
+  }
+];
 
 const Badge = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => (
   <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${className}`}>{children}</span>
@@ -49,24 +77,26 @@ const Button = ({
   }
   
   return (
-    <button aria-label={ariaLabel} disabled={disabled} onClick={onClick} className={`${base} ${variants[variant]} ${className}`}>
+    <button
+      className={`${base} ${variants[variant]} ${className}`}
+      onClick={onClick}
+      disabled={disabled}
+      aria-label={ariaLabel}
+    >
       {children}
     </button>
   );
 };
 
 const FieldLabel = ({ children }: { children: React.ReactNode }) => (
-  <div className="text-xs uppercase tracking-wide text-zinc-500 font-semibold">{children}</div>
+  <label className="block text-xs font-medium uppercase tracking-wider text-zinc-500">{children}</label>
 );
 
-// ————————————————————————————————————————————————
-// Mapping utils
-// ————————————————————————————————————————————————
-
-const leverageHue: Record<CardItem["leverage"], string> = {
-  Informational: "bg-sky-100 text-sky-800",
-  Relational: "bg-pink-100 text-pink-800",
-  Resource: "bg-amber-100 text-amber-800",
+// Map leverage types to badge colors
+const leverageColors: Record<CardItem["leverage"], string> = {
+  Informational: "bg-blue-100 text-blue-800",
+  Relational: "bg-green-100 text-green-800",
+  Resource: "bg-yellow-100 text-yellow-800",
   Urgency: "bg-red-100 text-red-800",
   Narrative: "bg-violet-100 text-violet-800",
   Authority: "bg-emerald-100 text-emerald-800"
@@ -81,9 +111,16 @@ function FaceCard({ item, onDelete }: {
   onDelete?: (item: CardItem) => void;
 }) {
   const [mode, setMode] = useState<"direct" | "inception">("direct");
+  const [lineIdx, setLineIdx] = useState(0);
 
   const phrases = item.modes[mode];
-  const phrase = phrases[0] || "";
+  const phrase = phrases[Math.min(lineIdx, Math.max(phrases.length - 1, 0))] || "";
+
+  function cycle(delta: number) {
+    if (!phrases.length) return;
+    const next = (lineIdx + delta + phrases.length) % phrases.length;
+    setLineIdx(next);
+  }
 
   return (
     <motion.div
@@ -93,15 +130,20 @@ function FaceCard({ item, onDelete }: {
     >
       {/* Header */}
       <div className="mb-3 flex items-start justify-between gap-2">
-        <div>
-          <div className="text-lg font-semibold text-zinc-900">{item.name}</div>
-          <div className="text-sm text-zinc-500">{item.summary}</div>
+        <div className="flex-1">
+          <h3 className="font-semibold text-zinc-900">{item.name}</h3>
+          <div className="mt-1 flex items-center gap-2">
+            <Badge className={leverageColors[item.leverage]}>{item.leverage}</Badge>
+            <Badge className="bg-zinc-100 text-zinc-700">{item.intent}</Badge>
+            <Badge className="bg-zinc-100 text-zinc-700">{item.tier}</Badge>
+          </div>
         </div>
-        <div className="flex flex-wrap items-center gap-2">
-          <Badge className={` ${leverageHue[item.leverage]}`}>{item.leverage}</Badge>
-          <Badge className="bg-zinc-100 text-zinc-800">{item.intent}</Badge>
-          <Badge className="bg-zinc-900 text-white">{item.tier}</Badge>
-        </div>
+      </div>
+
+      {/* Summary */}
+      <div className="mb-3">
+        <FieldLabel>Summary</FieldLabel>
+        <p className="mt-1 text-sm text-zinc-800">{item.summary}</p>
       </div>
 
       {/* Mode Toggle */}
@@ -111,13 +153,13 @@ function FaceCard({ item, onDelete }: {
         <div className="grid grid-cols-2 rounded-2xl border border-zinc-300 p-1">
           <button
             className={`rounded-xl px-3 py-1 text-sm font-medium ${mode === "direct" ? "bg-zinc-900 text-white" : "text-zinc-700 hover:bg-zinc-100"}`}
-            onClick={() => setMode("direct")}
+            onClick={() => { setMode("direct"); setLineIdx(0); }}
           >
             Direct
           </button>
           <button
             className={`rounded-xl px-3 py-1 text-sm font-medium ${mode === "inception" ? "bg-zinc-900 text-white" : "text-zinc-700 hover:bg-zinc-100"}`}
-            onClick={() => setMode("inception")}
+            onClick={() => { setMode("inception"); setLineIdx(0); }}
           >
             Inception
           </button>
@@ -131,7 +173,7 @@ function FaceCard({ item, onDelete }: {
           <div className="relative">
             <AnimatePresence mode="wait" initial={false}>
               <motion.div
-                key={mode}
+                key={mode + ":" + lineIdx}
                 initial={{ rotateX: 90, opacity: 0 }}
                 animate={{ rotateX: 0, opacity: 1 }}
                 exit={{ rotateX: -90, opacity: 0 }}
@@ -141,6 +183,26 @@ function FaceCard({ item, onDelete }: {
                 {phrase || <span className="text-zinc-400">No phrase</span>}
               </motion.div>
             </AnimatePresence>
+            <div className="mt-2 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <div className="text-xs text-zinc-500">{phrases.length} option{phrases.length !== 1 ? "s" : ""}</div>
+                {phrases.length > 1 && (
+                  <div className="text-xs bg-zinc-200 text-zinc-700 px-2 py-1 rounded-full">
+                    {lineIdx + 1} of {phrases.length}
+                  </div>
+                )}
+              </div>
+              {phrases.length > 1 && (
+                <div className="flex items-center gap-2">
+                  <Button variant="outline" onClick={() => cycle(-1)} ariaLabel="Previous phrase">
+                    <RefreshCw className="h-4 w-4 -scale-x-100" /> Prev
+                  </Button>
+                  <Button variant="outline" onClick={() => cycle(1)} ariaLabel="Next phrase">
+                    Next <RefreshCw className="h-4 w-4" />
+                  </Button>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
@@ -149,10 +211,12 @@ function FaceCard({ item, onDelete }: {
       <div className="mb-3">
         <FieldLabel>Steps</FieldLabel>
         <ol className="mt-1 space-y-2">
-          {item.steps.map((s, i) => (
-            <li key={i} className="flex items-start gap-3 rounded-2xl border border-zinc-200 bg-white p-3">
-              <span className="mt-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full bg-zinc-900 text-xs font-bold text-white">{i + 1}</span>
-              <span className="text-sm text-zinc-800">{s}</span>
+          {item.steps.map((step, i) => (
+            <li key={i} className="flex items-start gap-2">
+              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-zinc-900 text-xs font-medium text-white">
+                {i + 1}
+              </span>
+              <span className="text-sm text-zinc-800">{step}</span>
             </li>
           ))}
         </ol>
@@ -194,6 +258,9 @@ export default function FaceCardDisplay() {
   const [intent, setIntent] = useState<"All" | CardItem["intent"]>("All");
   const [tier, setTier] = useState<"All" | CardItem["tier"]>("All");
   const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
+  const [activeFilters, setActiveFilters] = useState<Array<{type: string, value: string, label: string}>>([]);
+  const [searchSuggestions, setSearchSuggestions] = useState<string[]>([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
 
   // Load cards from Supabase
   useEffect(() => {
@@ -213,6 +280,49 @@ export default function FaceCardDisplay() {
 
     loadCards();
   }, []);
+
+  // Apply filter preset
+  const applyPreset = (preset: FilterPreset) => {
+    if (preset.filters.leverage) setLev(preset.filters.leverage);
+    if (preset.filters.intent) setIntent(preset.filters.intent);
+    if (preset.filters.tier) setTier(preset.filters.tier);
+  };
+
+  // Update active filters when filter states change
+  useEffect(() => {
+    const filters: Array<{type: string, value: string, label: string}> = [];
+    if (lev !== "All") filters.push({type: "leverage", value: lev, label: `Leverage: ${lev}`});
+    if (intent !== "All") filters.push({type: "intent", value: intent, label: `Intent: ${intent}`});
+    if (tier !== "All") filters.push({type: "tier", value: tier, label: `Tier: ${tier}`});
+    setActiveFilters(filters);
+  }, [lev, intent, tier]);
+
+  // Remove specific filter
+  const removeFilter = (filterToRemove: {type: string, value: string, label: string}) => {
+    switch (filterToRemove.type) {
+      case "leverage": setLev("All"); break;
+      case "intent": setIntent("All"); break;
+      case "tier": setTier("All"); break;
+    }
+  };
+
+  // Update search suggestions based on cards
+  useEffect(() => {
+    if (query.length > 1) {
+      const suggestions = new Set<string>();
+      cards.forEach(card => {
+        [card.name, card.leverage, card.intent, ...card.modes.direct, ...card.modes.inception]
+          .forEach(text => {
+            if (text.toLowerCase().includes(query.toLowerCase()) && text.toLowerCase() !== query.toLowerCase()) {
+              suggestions.add(text);
+            }
+          });
+      });
+      setSearchSuggestions(Array.from(suggestions).slice(0, 5));
+    } else {
+      setSearchSuggestions([]);
+    }
+  }, [query, cards]);
 
   // Handle delete card
   const handleDelete = (item: CardItem) => {
@@ -307,16 +417,87 @@ export default function FaceCardDisplay() {
         </Button>
       </div>
 
-      {/* Toolbar */}
+      {/* Filter Presets */}
+      <div className="mb-4 flex flex-wrap gap-2">
+        <span className="text-sm font-medium text-zinc-700">Quick filters:</span>
+        {FILTER_PRESETS.map((preset) => (
+          <button
+            key={preset.name}
+            onClick={() => applyPreset(preset)}
+            className="flex items-center gap-2 rounded-full border border-zinc-200 bg-white px-3 py-1.5 text-sm font-medium text-zinc-700 hover:bg-zinc-50 hover:border-zinc-300 transition-colors"
+          >
+            {preset.icon}
+            {preset.name}
+          </button>
+        ))}
+      </div>
+
+      {/* Active Filters */}
+      {activeFilters.length > 0 && (
+        <div className="mb-4 flex flex-wrap gap-2">
+          <span className="text-sm font-medium text-zinc-700">Active filters:</span>
+          {activeFilters.map((filter) => (
+            <div
+              key={`${filter.type}-${filter.value}`}
+              className="flex items-center gap-1 rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-800"
+            >
+              {filter.label}
+              <button
+                onClick={() => removeFilter(filter)}
+                className="ml-1 text-blue-600 hover:text-blue-800"
+              >
+                <X className="h-3 w-3" />
+              </button>
+            </div>
+          ))}
+          <button
+            onClick={() => {
+              setQuery("");
+              setLev("All");
+              setIntent("All");
+              setTier("All");
+            }}
+            className="text-sm text-zinc-500 hover:text-zinc-700 underline"
+          >
+            Clear all
+          </button>
+        </div>
+      )}
+
+      {/* Enhanced Search and Filters */}
       <div className="mb-6 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5">
         <div className="relative">
           <input
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={(e) => {
+              setQuery(e.target.value);
+              setShowSuggestions(true);
+            }}
+            onFocus={() => setShowSuggestions(true)}
+            onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
             placeholder="Search cards, phrases, steps…"
             className="w-full rounded-2xl border border-zinc-300 bg-white px-10 py-2.5 text-sm text-zinc-900 placeholder-zinc-400 focus:border-zinc-900 focus:outline-none focus:ring-2 focus:ring-zinc-900"
           />
           <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-400" />
+          
+          {/* Search Suggestions */}
+          {showSuggestions && searchSuggestions.length > 0 && (
+            <div className="absolute top-full left-0 right-0 z-10 mt-1 rounded-xl border border-zinc-200 bg-white shadow-lg">
+              {searchSuggestions.map((suggestion, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => {
+                    setQuery(suggestion);
+                    setShowSuggestions(false);
+                  }}
+                  className="flex w-full items-center px-3 py-2 text-left text-sm text-zinc-700 hover:bg-zinc-50 first:rounded-t-xl last:rounded-b-xl"
+                >
+                  <Search className="h-3 w-3 mr-2 text-zinc-400" />
+                  {suggestion}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
 
         <div className="flex items-center gap-2">
@@ -392,7 +573,6 @@ export default function FaceCardDisplay() {
                 onClick={() => confirmDelete(deleteConfirm)}
                 className="bg-red-600 hover:bg-red-700 text-white"
               >
-                <Trash2 className="h-4 w-4 mr-2" />
                 Delete
               </Button>
             </div>
