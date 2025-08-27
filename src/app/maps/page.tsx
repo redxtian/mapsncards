@@ -20,6 +20,7 @@ import {
 } from 'lucide-react';
 import { toast } from 'sonner';
 import { NegotiationMap } from '@/types/map';
+import { ProtectedRoute } from '@/components/auth/protected-route';
 
 export default function MapsPage() {
   const [maps, setMaps] = useState<NegotiationMap[]>([]);
@@ -192,7 +193,8 @@ export default function MapsPage() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <ProtectedRoute>
+      <div className="container mx-auto px-4 py-8">
       {/* Header */}
       <div className="flex justify-between items-center mb-8">
         <div>
@@ -404,6 +406,7 @@ export default function MapsPage() {
           ))}
         </div>
       )}
-    </div>
+      </div>
+    </ProtectedRoute>
   );
 }

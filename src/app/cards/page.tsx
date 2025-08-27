@@ -1,7 +1,12 @@
 import FaceCardDisplay from '@/components/cards/FaceCardDisplay'
+import { ProtectedRoute } from '@/components/auth/protected-route'
 
 export default function CardsPage() {
-  return <FaceCardDisplay />
+  return (
+    <ProtectedRoute>
+      <FaceCardDisplay />
+    </ProtectedRoute>
+  )
 }
 
 export const metadata = {

@@ -9,6 +9,7 @@ import { ScenarioBuilder } from '@/components/forms/scenario-builder';
 import { ArrowLeft, Zap, Edit3 } from 'lucide-react';
 import Link from 'next/link';
 import { toast } from 'sonner';
+import { ProtectedRoute } from '@/components/auth/protected-route';
 
 type CreateMode = 'quick' | 'custom';
 
@@ -124,7 +125,8 @@ export default function CreateMapPage() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <ProtectedRoute>
+      <div className="container mx-auto px-4 py-8">
       {/* Header */}
       <div className="mb-8">
         <Button variant="ghost" asChild className="mb-4">
@@ -224,6 +226,7 @@ export default function CreateMapPage() {
           />
         </div>
       )}
-    </div>
+      </div>
+    </ProtectedRoute>
   );
 }

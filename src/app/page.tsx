@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { CreditCard, Eye, Upload, BarChart3 } from 'lucide-react';
+import { CreditCard, Eye, Upload, BarChart3, LogIn } from 'lucide-react';
 
 export default function Home() {
   return (
@@ -22,15 +22,15 @@ export default function Home() {
         </p>
         <div className="flex gap-4 justify-center flex-wrap">
           <Button asChild size="lg">
-            <Link href="/cards/input">
-              <Upload className="w-5 h-5 mr-2" />
-              Add Your First Cards
+            <Link href="/login">
+              <LogIn className="w-5 h-5 mr-2" />
+              Get Started
             </Link>
           </Button>
           <Button variant="outline" size="lg" asChild>
-            <Link href="/dashboard">
+            <Link href="/login">
               <Eye className="w-5 h-5 mr-2" />
-              View Dashboard
+              Sign In
             </Link>
           </Button>
         </div>
@@ -79,14 +79,14 @@ export default function Home() {
         </p>
         <div className="flex gap-4 justify-center flex-wrap">
           <Button asChild size="lg">
-            <Link href="/cards/input">
+            <Link href="/login">
               Get Started Now
             </Link>
           </Button>
           <Button variant="outline" size="lg" asChild>
-            <Link href="/cards">
+            <Link href="/login">
               <CreditCard className="w-4 h-4 mr-2" />
-              Browse Cards
+              Sign In
             </Link>
           </Button>
         </div>

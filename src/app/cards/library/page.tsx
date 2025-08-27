@@ -2,10 +2,12 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Construction, ArrowLeft } from 'lucide-react';
+import { ProtectedRoute } from '@/components/auth/protected-route';
 
 export default function CardLibraryPage() {
   return (
-    <div className="container mx-auto px-4 py-8">
+    <ProtectedRoute>
+      <div className="container mx-auto px-4 py-8">
       <div className="max-w-md mx-auto">
         <Card>
           <CardHeader className="text-center">
@@ -27,6 +29,7 @@ export default function CardLibraryPage() {
           </CardContent>
         </Card>
       </div>
-    </div>
+      </div>
+    </ProtectedRoute>
   );
 }

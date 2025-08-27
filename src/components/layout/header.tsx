@@ -8,7 +8,8 @@ import {
   DropdownMenuItem, 
   DropdownMenuTrigger 
 } from '@/components/ui/dropdown-menu';
-import { Menu, User, Map } from 'lucide-react';
+import { Menu, Map } from 'lucide-react';
+import { UserMenu } from './user-menu';
 
 export function Header() {
   return (
@@ -40,21 +41,7 @@ export function Header() {
           {/* Actions */}
           <div className="flex items-center space-x-4">
             {/* User Menu */}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="sm">
-                  <User className="h-4 w-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuItem asChild>
-                  <Link href="/profile">Profile</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/settings">Settings</Link>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <UserMenu />
 
             {/* Mobile Menu */}
             <DropdownMenu>
