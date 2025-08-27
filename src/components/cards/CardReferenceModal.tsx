@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ExternalLink, ArrowLeft, ArrowRight } from "lucide-react";
+import { X, ExternalLink, ArrowRight } from "lucide-react";
 import { CardItem } from "@/lib/firebase";
 
 interface CardReferenceModalProps {

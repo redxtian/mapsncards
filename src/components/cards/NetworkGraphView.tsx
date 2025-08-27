@@ -2,8 +2,13 @@
 
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ZoomIn, ZoomOut, RotateCcw, Search, Filter, Maximize2, ExternalLink } from "lucide-react";
-import ForceGraph2D from "react-force-graph-2d";
+import { X, ZoomIn, ZoomOut, RotateCcw, Search, ExternalLink } from "lucide-react";
+import dynamic from "next/dynamic";
+
+const ForceGraph2D = dynamic(() => import("react-force-graph-2d"), {
+  ssr: false,
+  loading: () => <div className="flex items-center justify-center h-full">Loading graph...</div>
+});
 import { CardItem } from "@/lib/firebase";
 
 interface GraphNode {
@@ -33,7 +38,7 @@ interface NetworkGraphViewProps {
   isOpen: boolean;
   onClose: () => void;
   cards: CardItem[];
-  centerCardId?: string;
+  centerCardId?: string | null;
   onCardSelect?: (card: CardItem) => void;
   maxDepth?: number;
 }
@@ -55,13 +60,13 @@ export function NetworkGraphView({
   const graphRef = useRef<any>(null);
 
   // Color scheme for tiers
-  const tierColors: Record<string, string> = {
+  const tierColors = useMemo(() => ({
     'L1': '#22c55e', // green
     'L2': '#3b82f6', // blue  
     'L3': '#8b5cf6', // purple
     'L4': '#f59e0b', // amber
     'L5': '#ef4444'  // red
-  };
+  }), []);
 
   // Build graph data from cards
   const graphData = useMemo(() => {
@@ -147,7 +152,7 @@ export function NetworkGraphView({
     }
 
     return { nodes, links: edges };
-  }, [cards, centerCardId, maxDepth]);
+  }, [cards, centerCardId, maxDepth, tierColors]);
 
   // Filter nodes based on search
   const filteredGraphData = useMemo(() => {
@@ -180,13 +185,13 @@ export function NetworkGraphView({
     const highlightEdgesSet = new Set<string>();
 
     // Highlight connected nodes and edges
-    filteredGraphData.links.forEach(link => {
-      const sourceId = typeof link.source === 'object' ? link.source.id : link.source;
-      const targetId = typeof link.target === 'object' ? link.target.id : link.target;
+    filteredGraphData.links.forEach((link: any) => {
+      const sourceId = typeof link.source === 'object' && link.source ? link.source.id : link.source;
+      const targetId = typeof link.target === 'object' && link.target ? link.target.id : link.target;
       
       if (sourceId === node.id || targetId === node.id) {
-        highlightNodesSet.add(sourceId);
-        highlightNodesSet.add(targetId);
+        highlightNodesSet.add(sourceId as string);
+        highlightNodesSet.add(targetId as string);
         highlightEdgesSet.add(`${sourceId}-${targetId}`);
       }
     });
@@ -458,38 +463,41 @@ export function NetworkGraphView({
               }}
               
               // Interactions
-              onNodeHover={handleNodeHover}
-              onNodeClick={handleNodeClick}
-              onNodeDragStart={(node: any) => {
-                setDraggedNodeId(node.id);
-                // Store original positions of connected nodes
-                const startPositions = new Map();
-                
-                // Find all connected nodes
-                const connectedNodes = new Set<string>();
-                filteredGraphData.links.forEach(link => {
-                  const sourceId = typeof link.source === 'object' ? link.source.id : link.source;
-                  const targetId = typeof link.target === 'object' ? link.target.id : link.target;
+              onNodeHover={handleNodeHover as any}
+              onNodeClick={handleNodeClick as any}
+              onNodeDrag={(node: any, _translate: any) => {
+                // Track drag start if not already tracking
+                if (!draggedNodeId) {
+                  setDraggedNodeId(node.id);
                   
-                  if (sourceId === node.id) {
-                    connectedNodes.add(targetId);
-                  } else if (targetId === node.id) {
-                    connectedNodes.add(sourceId);
-                  }
-                });
+                  // Store original positions of connected nodes
+                  const startPositions = new Map();
+                  
+                  // Find all connected nodes
+                  const connectedNodes = new Set<string>();
+                  filteredGraphData.links.forEach((link: any) => {
+                    const sourceId = typeof link.source === 'object' && link.source ? link.source.id : link.source;
+                    const targetId = typeof link.target === 'object' && link.target ? link.target.id : link.target;
+                    
+                    if (sourceId === node.id) {
+                      connectedNodes.add(targetId);
+                    } else if (targetId === node.id) {
+                      connectedNodes.add(sourceId);
+                    }
+                  });
+                  
+                  // Store positions of connected nodes
+                  filteredGraphData.nodes.forEach(n => {
+                    if (connectedNodes.has(n.id)) {
+                      startPositions.set(n.id, { x: n.x, y: n.y });
+                    }
+                  });
+                  
+                  // Also store the dragged node's original position
+                  startPositions.set(node.id, { x: node.x, y: node.y });
+                  setDragStartPositions(startPositions);
+                }
                 
-                // Store positions of connected nodes
-                filteredGraphData.nodes.forEach(n => {
-                  if (connectedNodes.has(n.id)) {
-                    startPositions.set(n.id, { x: n.x, y: n.y });
-                  }
-                });
-                
-                // Also store the dragged node's original position
-                startPositions.set(node.id, { x: node.x, y: node.y });
-                setDragStartPositions(startPositions);
-              }}
-              onNodeDrag={(node: any) => {
                 // Fix the node position during drag to prevent it from snapping back
                 node.fx = node.x;
                 node.fy = node.y;
@@ -532,17 +540,10 @@ export function NetworkGraphView({
               }}
               
               // Physics
-              d3Force={{
-                charge: -800,  // Stronger repulsion between nodes
-                link: 150,     // Longer link distance
-                collision: 50, // Larger collision detection
-                center: 0.1,   // Weaker centering force
-                x: 0.05,       // Weak horizontal positioning
-                y: 0.05        // Weak vertical positioning
-              }}
+              d3AlphaDecay={0.0228}
+              d3VelocityDecay={0.3}
               cooldownTicks={300}
               warmupTicks={100}
-              d3VelocityDecay={0.3}
               enablePanInteraction={true}
               enableZoomInteraction={true}
             />

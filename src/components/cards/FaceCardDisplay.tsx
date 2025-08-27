@@ -692,7 +692,7 @@ export default function FaceCardDisplay() {
 
   const filteredAndSorted = useMemo(() => {
     const q = query.trim().toLowerCase();
-    let filtered = cards.filter((c) => {
+    const filtered = cards.filter((c) => {
       const hit = !q || [c.name, c.summary, c.id, c.leverage, c.intent, ...c.modes.direct, ...c.modes.inception, ...c.steps, c.recovery].join("\n").toLowerCase().includes(q);
       const okLev = lev === "All" || c.leverage === lev;
       const okInt = intent === "All" || c.intent === intent;

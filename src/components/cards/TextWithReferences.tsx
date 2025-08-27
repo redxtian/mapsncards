@@ -40,17 +40,19 @@ export function TextWithReferences({
 
       // Add the reference chip
       const reference = match[1];
-      const referencedCard = referenceCards[reference];
-      
-      parts.push(
-        <ReferenceChip
-          key={`ref-${key++}`}
-          reference={reference}
-          referencedCard={referencedCard}
-          onChipClick={onReferenceClick}
-          className="mx-1"
-        />
-      );
+      if (reference) {
+        const referencedCard = referenceCards[reference];
+        
+        parts.push(
+          <ReferenceChip
+            key={`ref-${key++}`}
+            reference={reference}
+            referencedCard={referencedCard}
+            onChipClick={onReferenceClick}
+            className="mx-1"
+          />
+        );
+      }
 
       currentIndex = match.index + match[0].length;
     }

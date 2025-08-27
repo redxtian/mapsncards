@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, ChevronRight, Search, Filter, Eye, EyeOff, Folder, FolderOpen } from "lucide-react";
+import { ChevronRight, Search, Filter, Eye, EyeOff, Folder, FolderOpen } from "lucide-react";
 import { CardItem } from "@/lib/firebase";
 
 interface TreeNode {
