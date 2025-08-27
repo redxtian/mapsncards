@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Filter, RefreshCw, Search, Plus, Upload, Trash2, X, Star, Clock, TrendingUp, Grid3X3, List, LayoutGrid, ArrowUpDown, ArrowUp, ArrowDown, CheckSquare, Square } from "lucide-react";
 import Link from "next/link";
 import { cardOperations, CardItem } from "@/lib/firebase";
+import { TextWithReferences } from "./TextWithReferences";
 
 // ————————————————————————————————————————————————
 // Small UI helpers (Tailwind only)
@@ -122,12 +123,14 @@ const leverageColors: Record<CardItem["leverage"], string> = {
 // FaceCard component
 // ————————————————————————————————————————————————
 
-function FaceCard({ item, onDelete, density, isSelected, onSelect }: { 
+function FaceCard({ item, onDelete, density, isSelected, onSelect, onReferenceClick, referenceCards }: { 
   item: CardItem; 
   onDelete?: (item: CardItem) => void;
   density: GridDensity;
   isSelected?: boolean;
   onSelect?: (id: string) => void;
+  onReferenceClick?: (reference: string) => void;
+  referenceCards?: Record<string, CardItem>;
 }) {
   const [mode, setMode] = useState<"direct" | "inception">("direct");
   const [lineIdx, setLineIdx] = useState(0);
@@ -145,6 +148,7 @@ function FaceCard({ item, onDelete, density, isSelected, onSelect }: {
 
   return (
     <motion.div
+      id={`card-${item.id}`}
       layout
       className={`group relative flex h-full flex-col rounded-3xl border backdrop-blur-md transition-all duration-300 overflow-hidden ${
         isSelected 
@@ -346,7 +350,12 @@ function FaceCard({ item, onDelete, density, isSelected, onSelect }: {
               >
                 {i + 1}
               </motion.span>
-              <span className="text-sm text-zinc-800 leading-relaxed">{step}</span>
+              <TextWithReferences
+                text={step}
+                onReferenceClick={onReferenceClick}
+                referenceCards={referenceCards}
+                className="text-sm text-zinc-800 leading-relaxed"
+              />
             </motion.li>
           ))}
         </ol>
@@ -415,6 +424,7 @@ export default function FaceCardDisplay() {
   const [sortBy, setSortBy] = useState<SortOption>("newest");
   const [selectedCards, setSelectedCards] = useState<Set<string>>(new Set());
   const [bulkMode, setBulkMode] = useState(false);
+  const [referenceCards, setReferenceCards] = useState<Record<string, CardItem>>({});
 
   // Load cards from Supabase
   useEffect(() => {
@@ -434,6 +444,45 @@ export default function FaceCardDisplay() {
 
     loadCards();
   }, []);
+
+  // Load referenced cards when cards change
+  useEffect(() => {
+    async function loadReferencedCards() {
+      const allReferences = new Set<string>();
+      
+      // Extract all references from card steps
+      cards.forEach(card => {
+        card.steps?.forEach(step => {
+          const matches = step.match(/`([^`]+)`/g);
+          if (matches) {
+            matches.forEach(match => {
+              const reference = match.slice(1, -1); // Remove backticks
+              allReferences.add(reference);
+            });
+          }
+        });
+      });
+
+      if (allReferences.size > 0) {
+        try {
+          const referencedCardsList = await cardOperations.getByIds(Array.from(allReferences));
+          const referencedCardsMap: Record<string, CardItem> = {};
+          
+          referencedCardsList.forEach(card => {
+            referencedCardsMap[card.id] = card;
+          });
+          
+          setReferenceCards(referencedCardsMap);
+        } catch (err) {
+          console.error('Error loading referenced cards:', err);
+        }
+      }
+    }
+
+    if (cards.length > 0) {
+      loadReferencedCards();
+    }
+  }, [cards]);
 
   // Apply filter preset
   const applyPreset = (preset: FilterPreset) => {
@@ -500,6 +549,27 @@ export default function FaceCardDisplay() {
     } catch (err) {
       console.error('Error deleting card:', err);
       alert('Failed to delete card. Please try again.');
+    }
+  };
+
+  // Handle reference chip click
+  const handleReferenceClick = (reference: string) => {
+    // Find the referenced card and scroll to it if it's visible
+    const referencedCard = referenceCards[reference];
+    if (referencedCard) {
+      // Set search to show just this card
+      setQuery(referencedCard.name);
+      
+      // Scroll to the card after a brief delay to allow filtering
+      setTimeout(() => {
+        const cardElement = document.getElementById(`card-${referencedCard.id}`);
+        if (cardElement) {
+          cardElement.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'center' 
+          });
+        }
+      }, 100);
     }
   };
 
@@ -1006,6 +1076,8 @@ export default function FaceCardDisplay() {
                 density={gridDensity}
                 isSelected={selectedCards.has(c.id)}
                 onSelect={bulkMode ? toggleCardSelection : undefined}
+                onReferenceClick={handleReferenceClick}
+                referenceCards={referenceCards}
               />
             </motion.div>
           ))}
