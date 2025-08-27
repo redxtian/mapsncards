@@ -2,13 +2,14 @@
 
 import React, { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Filter, RefreshCw, Search, Plus, Upload, Trash2, X, Star, Clock, TrendingUp, Grid3X3, List, LayoutGrid, ArrowUpDown, ArrowUp, ArrowDown, CheckSquare, Square, TreePine, Share2 } from "lucide-react";
+import { Filter, RefreshCw, Search, Plus, Upload, Trash2, X, Star, Clock, TrendingUp, Grid3X3, List, LayoutGrid, ArrowUpDown, ArrowUp, ArrowDown, CheckSquare, Square, TreePine, Share2, FileText } from "lucide-react";
 import Link from "next/link";
 import { cardOperations, CardItem } from "@/lib/firebase";
 import { TextWithReferences } from "./TextWithReferences";
 import { CardReferenceModal } from "./CardReferenceModal";
 import { TreeViewNavigator } from "./TreeViewNavigator";
 import { NetworkGraphView } from "./NetworkGraphView";
+import { DocumentView } from "./DocumentView";
 
 // ————————————————————————————————————————————————
 // Small UI helpers (Tailwind only)
@@ -454,6 +455,7 @@ export default function FaceCardDisplay() {
   const [showTreeView, setShowTreeView] = useState(false);
   const [selectedCardId, setSelectedCardId] = useState<string | null>(null);
   const [showGraphView, setShowGraphView] = useState(false);
+  const [showDocumentView, setShowDocumentView] = useState(false);
   const [graphCenterCardId, setGraphCenterCardId] = useState<string | null>(null);
 
   // Load cards from Supabase
@@ -1017,6 +1019,15 @@ export default function FaceCardDisplay() {
             <Share2 className="h-4 w-4 mr-1" />
             Network Graph
           </Button>
+
+          <Button
+            variant={showDocumentView ? "default" : "outline"}
+            onClick={() => setShowDocumentView(!showDocumentView)}
+            className="text-sm"
+          >
+            <FileText className="h-4 w-4 mr-1" />
+            {showDocumentView ? "Hide Document" : "Document View"}
+          </Button>
           
           <Button
             variant={bulkMode ? "default" : "outline"}
@@ -1143,11 +1154,16 @@ export default function FaceCardDisplay() {
         </div>
       </div>
 
-      {/* Main Content Area */}
-      <div className={`${showTreeView ? 'flex gap-6' : ''}`}>
-        {/* Tree View Sidebar */}
-        <AnimatePresence>
-          {showTreeView && (
+      {/* Document View */}
+      {showDocumentView ? (
+        <DocumentView cards={filteredAndSorted} isLoading={loading} />
+      ) : (
+        <>
+          {/* Main Content Area */}
+          <div className={`${showTreeView ? 'flex gap-6' : ''}`}>
+            {/* Tree View Sidebar */}
+            <AnimatePresence>
+              {showTreeView && (
             <motion.div
               initial={{ opacity: 0, x: -300, width: 0 }}
               animate={{ opacity: 1, x: 0, width: 320 }}
@@ -1202,7 +1218,9 @@ export default function FaceCardDisplay() {
             ))}
           </AnimatePresence>
         </motion.div>
-      </div>
+          </div>
+        </>
+      )}
 
       {/* Delete Confirmation Dialog */}
       {deleteConfirm && (
