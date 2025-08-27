@@ -13,9 +13,12 @@ This project has had recurring 404 deployment issues due to conflicting `vercel.
 ```json
 {
   "version": 2,
-  "buildCommand": "npm run build",
-  "outputDirectory": ".next", 
-  "installCommand": "npm ci"
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/next"
+    }
+  ]
 }
 ```
 
