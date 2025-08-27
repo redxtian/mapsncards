@@ -1,36 +1,110 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Negotiation Cards Frontend
 
-## Getting Started
+A Next.js application for managing negotiation cards with Firebase authentication and Firestore data storage.
 
-First, run the development server:
+## 🚨 Important: Deployment Configuration
+
+**This project has recurring 404 deployment issues.** Before making any deployment changes, read [DEPLOYMENT.md](./DEPLOYMENT.md) - especially the section about the correct `vercel.json` configuration.
+
+## Features
+
+- 🔐 **Firebase Authentication** (Email/Password + Google Sign-in)
+- 🛡️ **Protected Routes** - All card/map functionality requires login  
+- 🎴 **Card Management** - Create, view, and organize negotiation cards
+- 🗺️ **Network Visualization** - Interactive card relationship graphs
+- 📱 **Responsive Design** - Works on desktop and mobile
+- 🚫 **SEO Prevention** - No search engine crawling
+
+## Quick Start
 
 ```bash
+# Install dependencies
+npm install
+
+# Set up environment variables
+cp .env.example .env.local
+# Edit .env.local with your Firebase configuration
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Open http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Environment Variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Create `.env.local` with your Firebase configuration:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```env
+NEXT_PUBLIC_FIREBASE_API_KEY=your_api_key
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_project.firebasestorage.app
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+NEXT_PUBLIC_FIREBASE_APP_ID=your_app_id
+```
 
-## Learn More
+## Authentication Setup
 
-To learn more about Next.js, take a look at the following resources:
+1. **Enable Authentication** in Firebase Console:
+   - Go to Authentication > Sign-in methods
+   - Enable Email/Password and Google
+   
+2. **Update Firestore Rules** to require authentication:
+   ```javascript
+   rules_version = '2';
+   service cloud.firestore {
+     match /databases/{database}/documents {
+       match /{document=**} {
+         allow read, write: if request.auth != null;
+       }
+     }
+   }
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Development
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+# Development server
+npm run dev
 
-## Deploy on Vercel
+# Production build  
+npm run build
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# Type checking
+npm run type-check
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# Linting
+npm run lint
+```
+
+## Troubleshooting
+
+### 404 Errors on Deployment
+See the **"Recurring 404 Issue Prevention"** section in [DEPLOYMENT.md](./DEPLOYMENT.md).
+
+### Authentication Issues  
+1. Check Firebase configuration in `.env.local`
+2. Verify Authentication is enabled in Firebase Console
+3. Ensure Firestore rules require authentication
+
+### Build Errors
+```bash
+# Check for TypeScript errors
+npm run type-check
+
+# Check for linting issues  
+npm run lint
+
+# Clear Next.js cache
+rm -rf .next && npm run build
+```
+
+## Technologies
+
+- **Framework**: Next.js 15 with App Router
+- **Authentication**: Firebase Auth  
+- **Database**: Firebase Firestore
+- **Styling**: Tailwind CSS + shadcn/ui
+- **Language**: TypeScript
+- **Deployment**: Vercel

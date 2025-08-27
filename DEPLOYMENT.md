@@ -1,9 +1,37 @@
+# Deployment Configuration
+
+## ⚠️ IMPORTANT: Recurring 404 Issue Prevention
+
+This project has had recurring 404 deployment issues due to conflicting `vercel.json` files.
+
+### Current Setup (DO NOT CHANGE)
+- **Git Repository Root**: This `frontend/` directory is the repository root
+- **Vercel Configuration**: `vercel.json` in this directory (repo root) 
+- **No Parent Directory**: There should be NO `vercel.json` in any parent directory
+
+### Correct vercel.json Structure
+```json
+{
+  "version": 2,
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next", 
+  "installCommand": "npm ci"
+}
+```
+
+### If You Get 404 Errors Again
+1. Check if there's a `vercel.json` in a parent directory - DELETE IT
+2. Ensure the `vercel.json` in this directory matches the structure above
+3. The Vercel project should be configured to deploy from this repository root
+
+---
+
 # Vercel Deployment Guide
 
 ## Prerequisites
 - Vercel account
 - Git repository connected to Vercel
-- Backend API deployed (for production)
+- Firebase Authentication enabled
 
 ## Quick Deploy to Vercel
 
