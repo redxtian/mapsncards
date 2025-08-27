@@ -6,6 +6,7 @@ import { Filter, RefreshCw, Search, Plus, Upload, Trash2, X, Star, Clock, Trendi
 import Link from "next/link";
 import { cardOperations, CardItem } from "@/lib/firebase";
 import { TextWithReferences } from "./TextWithReferences";
+import { CardReferenceModal } from "./CardReferenceModal";
 
 // ————————————————————————————————————————————————
 // Small UI helpers (Tailwind only)
@@ -425,6 +426,8 @@ export default function FaceCardDisplay() {
   const [selectedCards, setSelectedCards] = useState<Set<string>>(new Set());
   const [bulkMode, setBulkMode] = useState(false);
   const [referenceCards, setReferenceCards] = useState<Record<string, CardItem>>({});
+  const [modalCard, setModalCard] = useState<CardItem | null>(null);
+  const [showModal, setShowModal] = useState(false);
 
   // Load cards from Supabase
   useEffect(() => {
@@ -554,23 +557,17 @@ export default function FaceCardDisplay() {
 
   // Handle reference chip click
   const handleReferenceClick = (reference: string) => {
-    // Find the referenced card and scroll to it if it's visible
     const referencedCard = referenceCards[reference];
     if (referencedCard) {
-      // Set search to show just this card
-      setQuery(referencedCard.name);
-      
-      // Scroll to the card after a brief delay to allow filtering
-      setTimeout(() => {
-        const cardElement = document.getElementById(`card-${referencedCard.id}`);
-        if (cardElement) {
-          cardElement.scrollIntoView({ 
-            behavior: 'smooth', 
-            block: 'center' 
-          });
-        }
-      }, 100);
+      setModalCard(referencedCard);
+      setShowModal(true);
     }
+  };
+
+  // Close modal
+  const closeModal = () => {
+    setShowModal(false);
+    setModalCard(null);
   };
 
   // Bulk operations
@@ -1106,6 +1103,13 @@ export default function FaceCardDisplay() {
           </div>
         </div>
       )}
+
+      {/* Reference Card Modal */}
+      <CardReferenceModal 
+        isOpen={showModal}
+        onClose={closeModal}
+        card={modalCard}
+      />
     </div>
   );
 }
