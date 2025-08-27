@@ -52,6 +52,23 @@ export function DocumentView({ cards, isLoading }: DocumentViewProps) {
     })
   }, [cards, searchTerm, leverageFilter, intentFilter, tierFilter])
 
+  // Helper function to process card references in text
+  const processCardReferences = (text: string, allCards: CardItem[]) => {
+    // Create a map for quick card lookup
+    const cardMap = new Map<string, CardItem>()
+    allCards.forEach(card => cardMap.set(card.id, card))
+    
+    // Replace card references in backticks with hyperlinks
+    return text.replace(/`([^`]+)`/g, (match, cardId) => {
+      const referencedCard = cardMap.get(cardId.trim())
+      if (referencedCard) {
+        const anchor = referencedCard.name.toLowerCase().replace(/\s+/g, '-').replace(/[^\w\-]/g, '')
+        return `[\`${cardId}\`](#${anchor} "${referencedCard.name}")`
+      }
+      return match // Return original if card not found
+    })
+  }
+
   // Convert cards to markdown content
   const markdownSections = useMemo(() => {
     const sections: MarkdownSection[] = []
@@ -74,6 +91,9 @@ ${filteredCards.map((card, index) =>
 
     // Individual cards
     filteredCards.forEach((card, _index) => {
+      // Process implementation steps to add hyperlinks to card references
+      const processedSteps = card.steps.map(step => processCardReferences(step, cards))
+      
       const cardMarkdown = `
 # ${card.name}
 
@@ -92,17 +112,17 @@ ${card.modes.inception.map(mode => `- ${mode}`).join('\n')}
 
 ## Implementation Steps
 
-1. **${card.steps[0]}**
-2. **${card.steps[1]}**
-3. **${card.steps[2]}**
+1. **${processedSteps[0]}**
+2. **${processedSteps[1]}**
+3. **${processedSteps[2]}**
 
 ## Recovery Strategy
-${card.recovery}
+${processCardReferences(card.recovery, cards)}
 
 ${card.map_adaptations && card.map_adaptations.length > 0 ? `
 ## Map Adaptations
 ${card.map_adaptations.map(adaptation => 
-  `**${adaptation.map} Context:** ${adaptation.tip}`
+  `**${adaptation.map} Context:** ${processCardReferences(adaptation.tip, cards)}`
 ).join('\n\n')}
 ` : ''}
 
@@ -121,14 +141,14 @@ ${card.telemetry_keys.map(key => `- \`${key}\``).join('\n')}
 `
 
       sections.push({
-        id: card.id,
+        id: card.name.toLowerCase().replace(/\s+/g, '-').replace(/[^\w\-]/g, ''),
         title: card.name,
         content: cardMarkdown
       })
     })
 
     return sections
-  }, [filteredCards])
+  }, [filteredCards, cards])
 
   const exportMarkdown = () => {
     const fullMarkdown = markdownSections.map(section => section.content).join('\n')
@@ -374,7 +394,43 @@ ${card.telemetry_keys.map(key => `- \`${key}\``).join('\n')}
                           ),
                           hr: () => (
                             <hr className="my-8 border-t-2 border-gray-200" />
-                          )
+                          ),
+                          a: ({ href, children, title }) => {
+                            // Handle internal card reference links
+                            if (href?.startsWith('#')) {
+                              return (
+                                <button
+                                  onClick={(e) => {
+                                    e.preventDefault()
+                                    const targetId = href.slice(1)
+                                    const element = document.getElementById(targetId)
+                                    if (element) {
+                                      element.scrollIntoView({ 
+                                        behavior: 'smooth',
+                                        block: 'start'
+                                      })
+                                    }
+                                  }}
+                                  className="text-blue-600 hover:text-blue-800 underline cursor-pointer transition-colors duration-200"
+                                  title={title || `Navigate to ${href}`}
+                                >
+                                  {children}
+                                </button>
+                              )
+                            }
+                            // Regular external links
+                            return (
+                              <a 
+                                href={href} 
+                                title={title}
+                                className="text-blue-600 hover:text-blue-800 underline transition-colors duration-200"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                {children}
+                              </a>
+                            )
+                          }
                         }}
                       >
                         {section.content}
