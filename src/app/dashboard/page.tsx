@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Upload, CreditCard, BarChart3, TrendingUp, Eye, Library, Loader2 } from 'lucide-react';
 import { useCardStats } from '@/hooks/use-cards';
+import { ProtectedRoute } from '@/components/auth/protected-route';
 
 export default function DashboardPage() {
   const { data: stats, isLoading, error } = useCardStats();
@@ -55,7 +56,8 @@ export default function DashboardPage() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <ProtectedRoute>
+      <div className="container mx-auto px-4 py-8">
       {/* Header */}
       <div className="flex justify-between items-center mb-8">
         <div>
@@ -249,6 +251,7 @@ export default function DashboardPage() {
         </CardContent>
       </Card>
 
-    </div>
+      </div>
+    </ProtectedRoute>
   );
 }

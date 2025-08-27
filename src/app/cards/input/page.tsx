@@ -1,7 +1,12 @@
 import JsonCardInput from '@/components/cards/JsonCardInput'
+import { ProtectedRoute } from '@/components/auth/protected-route'
 
 export default function CardInputPage() {
-  return <JsonCardInput />
+  return (
+    <ProtectedRoute>
+      <JsonCardInput />
+    </ProtectedRoute>
+  )
 }
 
 export const metadata = {

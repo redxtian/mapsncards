@@ -1,5 +1,15 @@
 import { initializeApp } from 'firebase/app'
 import { 
+  getAuth,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+  GoogleAuthProvider,
+  signInWithPopup,
+  User
+} from 'firebase/auth'
+import { 
   getFirestore, 
   collection, 
   doc, 
@@ -28,6 +38,8 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig)
 export const db = getFirestore(app)
+export const auth = getAuth(app)
+export const googleProvider = new GoogleAuthProvider()
 
 // Types matching your FaceCardUI CardItem structure
 export type CardItem = {
@@ -194,6 +206,39 @@ export const cardOperations = {
       
       callback(cards)
     })
+  }
+}
+
+// Authentication operations
+export const authOperations = {
+  // Sign in with email and password
+  async signInWithEmail(email: string, password: string) {
+    return await signInWithEmailAndPassword(auth, email, password)
+  },
+
+  // Create account with email and password
+  async signUpWithEmail(email: string, password: string) {
+    return await createUserWithEmailAndPassword(auth, email, password)
+  },
+
+  // Sign in with Google
+  async signInWithGoogle() {
+    return await signInWithPopup(auth, googleProvider)
+  },
+
+  // Sign out
+  async signOut() {
+    return await signOut(auth)
+  },
+
+  // Get current user
+  getCurrentUser() {
+    return auth.currentUser
+  },
+
+  // Listen to auth state changes
+  onAuthStateChanged(callback: (user: User | null) => void) {
+    return onAuthStateChanged(auth, callback)
   }
 }
 
