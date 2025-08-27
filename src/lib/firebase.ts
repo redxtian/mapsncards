@@ -148,6 +148,37 @@ export const cardOperations = {
     await deleteDoc(cardRef)
   },
 
+  // Get card by ID
+  async getById(id: string) {
+    const cardRef = doc(db, 'cards', id)
+    const cardDoc = await getDoc(cardRef)
+    
+    if (cardDoc.exists()) {
+      return {
+        ...cardDoc.data(),
+        id: cardDoc.id,
+        created_at: cardDoc.data()?.created_at?.toDate(),
+        updated_at: cardDoc.data()?.updated_at?.toDate(),
+      } as CardItem
+    }
+    
+    return null
+  },
+
+  // Get multiple cards by IDs
+  async getByIds(ids: string[]) {
+    const cards: CardItem[] = []
+    
+    for (const id of ids) {
+      const card = await this.getById(id)
+      if (card) {
+        cards.push(card)
+      }
+    }
+    
+    return cards
+  },
+
   // Real-time listener for cards
   onCardsChange(callback: (cards: CardItem[]) => void) {
     const cardsRef = collection(db, 'cards')

@@ -2,9 +2,13 @@
 
 import React, { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Filter, RefreshCw, Search, Plus, Upload, Trash2, X, Star, Clock, TrendingUp, Grid3X3, List, LayoutGrid, ArrowUpDown, ArrowUp, ArrowDown, CheckSquare, Square } from "lucide-react";
+import { Filter, RefreshCw, Search, Plus, Upload, Trash2, X, Star, Clock, TrendingUp, Grid3X3, List, LayoutGrid, ArrowUpDown, ArrowUp, ArrowDown, CheckSquare, Square, TreePine, Share2 } from "lucide-react";
 import Link from "next/link";
 import { cardOperations, CardItem } from "@/lib/firebase";
+import { TextWithReferences } from "./TextWithReferences";
+import { CardReferenceModal } from "./CardReferenceModal";
+import { TreeViewNavigator } from "./TreeViewNavigator";
+import { NetworkGraphView } from "./NetworkGraphView";
 
 // ————————————————————————————————————————————————
 // Small UI helpers (Tailwind only)
@@ -122,12 +126,15 @@ const leverageColors: Record<CardItem["leverage"], string> = {
 // FaceCard component
 // ————————————————————————————————————————————————
 
-function FaceCard({ item, onDelete, density, isSelected, onSelect }: { 
+function FaceCard({ item, onDelete, density, isSelected, onSelect, onReferenceClick, referenceCards, onShowGraph }: { 
   item: CardItem; 
   onDelete?: (item: CardItem) => void;
   density: GridDensity;
   isSelected?: boolean;
   onSelect?: (id: string) => void;
+  onReferenceClick?: (reference: string) => void;
+  referenceCards?: Record<string, CardItem>;
+  onShowGraph?: (cardId: string) => void;
 }) {
   const [mode, setMode] = useState<"direct" | "inception">("direct");
   const [lineIdx, setLineIdx] = useState(0);
@@ -145,6 +152,7 @@ function FaceCard({ item, onDelete, density, isSelected, onSelect }: {
 
   return (
     <motion.div
+      id={`card-${item.id}`}
       layout
       className={`group relative flex h-full flex-col rounded-3xl border backdrop-blur-md transition-all duration-300 overflow-hidden ${
         isSelected 
@@ -346,7 +354,12 @@ function FaceCard({ item, onDelete, density, isSelected, onSelect }: {
               >
                 {i + 1}
               </motion.span>
-              <span className="text-sm text-zinc-800 leading-relaxed">{step}</span>
+              <TextWithReferences
+                text={step}
+                onReferenceClick={onReferenceClick}
+                referenceCards={referenceCards}
+                className="text-sm text-zinc-800 leading-relaxed"
+              />
             </motion.li>
           ))}
         </ol>
@@ -371,7 +384,26 @@ function FaceCard({ item, onDelete, density, isSelected, onSelect }: {
       </div>
 
       {/* Footer */}
-      <div className="mt-auto flex items-center justify-end relative">
+      <div className="mt-auto flex items-center justify-between relative">
+        {/* Graph Button */}
+        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+          <Button 
+            variant="ghost" 
+            onClick={() => onShowGraph?.(item.id)}
+            ariaLabel="Show network graph"
+            className="text-blue-600 hover:text-blue-700 hover:bg-blue-50/80 backdrop-blur-sm border border-transparent hover:border-blue-200/50 transition-all duration-300 shadow-sm hover:shadow-md"
+          >
+            <motion.div
+              whileHover={{ scale: 1.1, rotate: 5 }}
+              transition={{ type: "spring", stiffness: 400 }}
+            >
+              <Share2 className="h-4 w-4" />
+            </motion.div>
+            Graph
+          </Button>
+        </motion.div>
+
+        {/* Delete Button */}
         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
           <Button 
             variant="ghost" 
@@ -388,7 +420,8 @@ function FaceCard({ item, onDelete, density, isSelected, onSelect }: {
           </Button>
         </motion.div>
         
-        {/* Floating action indicator */}
+        {/* Floating action indicators */}
+        <div className="absolute -top-1 -left-1 w-2 h-2 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse" />
         <div className="absolute -top-1 -right-1 w-2 h-2 bg-gradient-to-br from-red-400 to-red-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse" />
       </div>
     </motion.div>
@@ -415,6 +448,13 @@ export default function FaceCardDisplay() {
   const [sortBy, setSortBy] = useState<SortOption>("newest");
   const [selectedCards, setSelectedCards] = useState<Set<string>>(new Set());
   const [bulkMode, setBulkMode] = useState(false);
+  const [referenceCards, setReferenceCards] = useState<Record<string, CardItem>>({});
+  const [modalCard, setModalCard] = useState<CardItem | null>(null);
+  const [showModal, setShowModal] = useState(false);
+  const [showTreeView, setShowTreeView] = useState(false);
+  const [selectedCardId, setSelectedCardId] = useState<string | null>(null);
+  const [showGraphView, setShowGraphView] = useState(false);
+  const [graphCenterCardId, setGraphCenterCardId] = useState<string | null>(null);
 
   // Load cards from Supabase
   useEffect(() => {
@@ -434,6 +474,45 @@ export default function FaceCardDisplay() {
 
     loadCards();
   }, []);
+
+  // Load referenced cards when cards change
+  useEffect(() => {
+    async function loadReferencedCards() {
+      const allReferences = new Set<string>();
+      
+      // Extract all references from card steps
+      cards.forEach(card => {
+        card.steps?.forEach(step => {
+          const matches = step.match(/`([^`]+)`/g);
+          if (matches) {
+            matches.forEach(match => {
+              const reference = match.slice(1, -1); // Remove backticks
+              allReferences.add(reference);
+            });
+          }
+        });
+      });
+
+      if (allReferences.size > 0) {
+        try {
+          const referencedCardsList = await cardOperations.getByIds(Array.from(allReferences));
+          const referencedCardsMap: Record<string, CardItem> = {};
+          
+          referencedCardsList.forEach(card => {
+            referencedCardsMap[card.id] = card;
+          });
+          
+          setReferenceCards(referencedCardsMap);
+        } catch (err) {
+          console.error('Error loading referenced cards:', err);
+        }
+      }
+    }
+
+    if (cards.length > 0) {
+      loadReferencedCards();
+    }
+  }, [cards]);
 
   // Apply filter preset
   const applyPreset = (preset: FilterPreset) => {
@@ -503,6 +582,70 @@ export default function FaceCardDisplay() {
     }
   };
 
+  // Handle reference chip click
+  const handleReferenceClick = (reference: string) => {
+    const referencedCard = referenceCards[reference];
+    if (referencedCard) {
+      setModalCard(referencedCard);
+      setShowModal(true);
+    }
+  };
+
+  // Find cards that reference a given card ID
+  const findReferencingCards = (cardId: string): CardItem[] => {
+    return cards.filter(card => 
+      card.steps?.some(step => 
+        step.includes(`\`${cardId}\``)
+      )
+    );
+  };
+
+  // Handle navigation within modal
+  const handleNavigateToCard = (cardId: string) => {
+    const card = cards.find(c => c.id === cardId) || referenceCards[cardId];
+    if (card) {
+      setModalCard(card);
+      // Modal stays open, just switches to the new card
+    }
+  };
+
+  // Handle tree view card selection
+  const handleTreeCardSelect = (card: CardItem) => {
+    setSelectedCardId(card.id);
+    // Scroll to the card in the main view
+    const cardElement = document.getElementById(`card-${card.id}`);
+    if (cardElement) {
+      cardElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  };
+
+  // Handle graph view
+  const handleShowGraph = (cardId: string) => {
+    setGraphCenterCardId(cardId);
+    setShowGraphView(true);
+  };
+
+  const handleCloseGraph = () => {
+    setShowGraphView(false);
+    setGraphCenterCardId(null);
+  };
+
+  const handleGraphCardSelect = (card: CardItem) => {
+    setSelectedCardId(card.id);
+    // Optionally close graph and scroll to card
+    // setShowGraphView(false);
+    // const cardElement = document.getElementById(`card-${card.id}`);
+    // if (cardElement) {
+    //   cardElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    // }
+  };
+
+  // Close modal
+  const closeModal = () => {
+    setShowModal(false);
+    setModalCard(null);
+  };
+
   // Bulk operations
   const toggleCardSelection = (cardId: string) => {
     setSelectedCards(prev => {
@@ -549,7 +692,7 @@ export default function FaceCardDisplay() {
 
   const filteredAndSorted = useMemo(() => {
     const q = query.trim().toLowerCase();
-    let filtered = cards.filter((c) => {
+    const filtered = cards.filter((c) => {
       const hit = !q || [c.name, c.summary, c.id, c.leverage, c.intent, ...c.modes.direct, ...c.modes.inception, ...c.steps, c.recovery].join("\n").toLowerCase().includes(q);
       const okLev = lev === "All" || c.leverage === lev;
       const okInt = intent === "All" || c.intent === intent;
@@ -851,8 +994,30 @@ export default function FaceCardDisplay() {
           </div>
         </div>
 
-        {/* Bulk Actions */}
+        {/* View Controls */}
         <div className="flex items-center gap-2">
+          <Button
+            variant={showTreeView ? "default" : "outline"}
+            onClick={() => setShowTreeView(!showTreeView)}
+            className="text-sm"
+          >
+            <TreePine className="h-4 w-4 mr-1" />
+            {showTreeView ? "Hide Tree" : "Tree View"}
+          </Button>
+          
+          <Button
+            variant="outline"
+            onClick={() => {
+              // Show graph with all cards (no specific center)
+              setGraphCenterCardId(filteredAndSorted[0]?.id || null);
+              setShowGraphView(true);
+            }}
+            className="text-sm"
+          >
+            <Share2 className="h-4 w-4 mr-1" />
+            Network Graph
+          </Button>
+          
           <Button
             variant={bulkMode ? "default" : "outline"}
             onClick={() => {
@@ -978,39 +1143,66 @@ export default function FaceCardDisplay() {
         </div>
       </div>
 
-      {/* Grid */}
-      <motion.div 
-        className={`grid ${GRID_DENSITY_CONFIG[gridDensity].cols} ${GRID_DENSITY_CONFIG[gridDensity].gap}`}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.6, duration: 0.6 }}
-      >
+      {/* Main Content Area */}
+      <div className={`${showTreeView ? 'flex gap-6' : ''}`}>
+        {/* Tree View Sidebar */}
         <AnimatePresence>
-          {filteredAndSorted.map((c, index) => (
+          {showTreeView && (
             <motion.div
-              key={c.id}
-              layout
-              initial={{ opacity: 0, y: 50, scale: 0.9 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -50, scale: 0.9 }}
-              transition={{ 
-                delay: index * 0.05, 
-                duration: 0.4, 
-                type: "spring",
-                stiffness: 100 
-              }}
+              initial={{ opacity: 0, x: -300, width: 0 }}
+              animate={{ opacity: 1, x: 0, width: 320 }}
+              exit={{ opacity: 0, x: -300, width: 0 }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              className="flex-shrink-0"
             >
-              <FaceCard 
-                item={c} 
-                onDelete={handleDelete}
-                density={gridDensity}
-                isSelected={selectedCards.has(c.id)}
-                onSelect={bulkMode ? toggleCardSelection : undefined}
+              <TreeViewNavigator
+                cards={cards}
+                onCardSelect={handleTreeCardSelect}
+                selectedCardId={selectedCardId}
+                className="sticky top-6"
               />
             </motion.div>
-          ))}
+          )}
         </AnimatePresence>
-      </motion.div>
+
+        {/* Grid */}
+        <motion.div 
+          className={`flex-1 grid ${GRID_DENSITY_CONFIG[gridDensity].cols} ${GRID_DENSITY_CONFIG[gridDensity].gap}`}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6, duration: 0.6 }}
+          layout
+        >
+          <AnimatePresence>
+            {filteredAndSorted.map((c, index) => (
+              <motion.div
+                key={c.id}
+                layout
+                initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -50, scale: 0.9 }}
+                transition={{ 
+                  delay: index * 0.05, 
+                  duration: 0.4, 
+                  type: "spring",
+                  stiffness: 100 
+                }}
+              >
+                <FaceCard 
+                  item={c} 
+                  onDelete={handleDelete}
+                  density={gridDensity}
+                  isSelected={selectedCards.has(c.id) || selectedCardId === c.id}
+                  onSelect={bulkMode ? toggleCardSelection : undefined}
+                  onReferenceClick={handleReferenceClick}
+                  referenceCards={referenceCards}
+                  onShowGraph={handleShowGraph}
+                />
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
+      </div>
 
       {/* Delete Confirmation Dialog */}
       {deleteConfirm && (
@@ -1034,6 +1226,25 @@ export default function FaceCardDisplay() {
           </div>
         </div>
       )}
+
+      {/* Reference Card Modal */}
+      <CardReferenceModal 
+        isOpen={showModal}
+        onClose={closeModal}
+        card={modalCard}
+        onNavigateToCard={handleNavigateToCard}
+        referencingCards={modalCard ? findReferencingCards(modalCard.id) : []}
+      />
+
+      {/* Network Graph View */}
+      <NetworkGraphView
+        isOpen={showGraphView}
+        onClose={handleCloseGraph}
+        cards={cards}
+        centerCardId={graphCenterCardId}
+        onCardSelect={handleGraphCardSelect}
+        maxDepth={3}
+      />
     </div>
   );
 }
