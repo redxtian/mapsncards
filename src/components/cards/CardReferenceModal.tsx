@@ -2,16 +2,18 @@
 
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ExternalLink } from "lucide-react";
+import { X, ExternalLink, ArrowLeft, ArrowRight } from "lucide-react";
 import { CardItem } from "@/lib/firebase";
 
 interface CardReferenceModalProps {
   isOpen: boolean;
   onClose: () => void;
   card: CardItem | null;
+  onNavigateToCard?: (cardId: string) => void;
+  referencingCards?: CardItem[]; // Cards that reference this card
 }
 
-export function CardReferenceModal({ isOpen, onClose, card }: CardReferenceModalProps) {
+export function CardReferenceModal({ isOpen, onClose, card, onNavigateToCard, referencingCards = [] }: CardReferenceModalProps) {
   if (!card) return null;
 
   return (
@@ -119,12 +121,54 @@ export function CardReferenceModal({ isOpen, onClose, card }: CardReferenceModal
                 </div>
 
                 {/* Recovery */}
-                <div>
+                <div className="mb-6">
                   <h4 className="text-sm font-semibold text-gray-700 mb-2">Recovery Strategy</h4>
                   <p className="text-sm text-gray-700 bg-red-50/80 rounded-lg p-3">
                     {card.recovery}
                   </p>
                 </div>
+
+                {/* Referenced By Section */}
+                {referencingCards && referencingCards.length > 0 && (
+                  <div>
+                    <h4 className="text-sm font-semibold text-gray-700 mb-3">Referenced By</h4>
+                    <div className="space-y-2">
+                      {referencingCards.map((refCard) => (
+                        <motion.button
+                          key={refCard.id}
+                          onClick={() => onNavigateToCard?.(refCard.id)}
+                          className="w-full text-left p-3 bg-white/60 hover:bg-white/80 backdrop-blur-sm border border-white/30 rounded-lg transition-all duration-200 group"
+                          whileHover={{ scale: 1.02, y: -2 }}
+                          whileTap={{ scale: 0.98 }}
+                        >
+                          <div className="flex items-center justify-between">
+                            <div className="flex-1">
+                              <div className="flex items-center gap-2 mb-1">
+                                <span className={`px-2 py-0.5 rounded-full text-xs font-medium
+                                  ${refCard.tier === 'L1' ? 'bg-green-100 text-green-700' :
+                                    refCard.tier === 'L2' ? 'bg-blue-100 text-blue-700' :
+                                    refCard.tier === 'L3' ? 'bg-purple-100 text-purple-700' :
+                                    'bg-gray-100 text-gray-700'}`}>
+                                  {refCard.tier}
+                                </span>
+                                <span className="px-2 py-0.5 rounded-full bg-gray-100 text-gray-700 text-xs font-medium">
+                                  {refCard.leverage}
+                                </span>
+                              </div>
+                              <h5 className="font-medium text-gray-900 text-sm group-hover:text-gray-800">
+                                {refCard.name}
+                              </h5>
+                              <p className="text-xs text-gray-600 line-clamp-1">{refCard.summary}</p>
+                            </div>
+                            <div className="flex items-center gap-1 text-gray-400 group-hover:text-gray-600">
+                              <ArrowRight className="w-4 h-4" />
+                            </div>
+                          </div>
+                        </motion.button>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Footer */}
